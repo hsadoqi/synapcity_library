@@ -31,14 +31,14 @@ Synapcity is a modular and highly customizable application designed for seamless
 - [**Zustand**](https://zustand.docs.pmnd.rs/guides/nextjs) & [**React Context**](https://react.dev/reference/react/useContext) (for state management across the application)
 - [**React Query**](https://tanstack.com/query/v4/docs/framework/react/guides/ssr) / [**SWR**](https://swr.vercel.app/docs/with-nextjs) (for client-side data fetching, caching, and synchronization)
 
-    - [How to set up React Query in Next.js](https://zustand.docs.pmnd.rs/guides/nextjs)
+  - [How to set up React Query in Next.js](https://zustand.docs.pmnd.rs/guides/nextjs)
 
 - [**shadcn-ui**](https://ui.shadcn.com/docs/installation/next) (UI component library for building accessible and reusable components)
 - [**TailwindCSS**](https://tailwindcss.com/docs/installation) (utility-first CSS framework for responsive and maintainable styles)
 - [**CSS Modules**](https://github.com/css-modules/css-modules) (for scoped and modular styling)
 
-    - [What are CSS Modules](https://css-tricks.com/css-modules-part-1-need/)
-    - [Component-Scoped Styles with CSS Modules](https://www.gatsbyjs.com/docs/how-to/styling/css-modules/)
+  - [What are CSS Modules](https://css-tricks.com/css-modules-part-1-need/)
+  - [Component-Scoped Styles with CSS Modules](https://www.gatsbyjs.com/docs/how-to/styling/css-modules/)
 
 - [**Lexical**](https://lexical.dev/docs/intro) (rich text editor framework for dynamic content creation)
 
@@ -78,6 +78,8 @@ Synapcity is a modular and highly customizable application designed for seamless
 
 - [**ESLint**](https://nextjs.org/docs/app/api-reference/config/eslint) (for static code analysis and enforcing coding standards)
 - [**Prettier**](https://prettier.io/docs/en/) (for code formatting consistency)
+- [**Husky**](https://typicode.github.io/husky/) (for Git hooks, such as pre-commit, pre-push hooks, and enforcing code quality and formatting)
+- [**lint-changed**](https://github.com/artsy/lint-changed) (for linting only the files that have changed, ensuring faster linting and reducing unnecessary checks)
 
 - **GitHub Actions** (for CI/CD workflows and automating tests/deployment)
 
@@ -138,56 +140,68 @@ Synapcity is a modular and highly customizable application designed for seamless
 
 - [ ] **Set up**:
 
+  - [ ] **Development Environment**: Next.js, TypeScript, TailwindCSS, ESLint, and Prettier.
+    - [x] Initialize with Next.js, TypeScript, TailwindCSS
+    - [x] Install and configure ESLint, Prettier, Husky, `lint-changed`
+    - [x] Install and configure TailwindCSS, `postcss`, `auto-prefixer`, `shadcn-ui`
+  - [ ] **Basic project structure:**
+
     - [ ] **Development Environment**: Next.js, TypeScript, TailwindCSS, ESLint, and Prettier.
     - [ ] **Basic project structure:**
 
-                        ```md
-                        src/
-                        app/
-                        notes/
-                        components/
-                        [id]/
-                        layout.tsx
-                        page.tsx
-                        components/
-                        stores/
-                        NotesStore.ts
-                        layout.tsx
-                        page.tsx
-                        components/
-                        layout.tsx
-                        page.tsx
-                        shared/
-                        components/
-                        contexts/
-                        hooks/
-                        lib/
-                        prisma/
-                        schema.prisma
-                        seed.mjs
-                        client.mjs
-                        supabase/
-                        client.ts
-                        server.ts
-                        middleware.ts
-                        styles/
-                        globals.css
-                        stores/
-                        UIStore.ts
-                        utils/
-                        eslint.config.mjs
-                        middleware.ts
-                        next.config.ts
-                        postcss.config.mjs
-                        tailwind.config.ts
-                        tsconfig.json
-                        ```
+  - [ ] **Development Environment**: Next.js, TypeScript, TailwindCSS, ESLint, and Prettier.
+    - [x] Initialize with Next.js, TypeScript, TailwindCSS
+    - [x] Install and configure ESLint, Prettier, Husky, `lint-changed`
+    - [x] Install and configure TailwindCSS, `postcss`, `auto-prefixer`, `shadcn-ui`
+  - [ ] **Basic project structure:**
 
-    - [ ] **TDD/CDD:**
-        - [ ] Jest
-        - [ ] Cypress
-        - [ ] React Testing Library
-        - [ ] Storybook
+                            ```md
+                            src/
+                            app/
+                            notes/
+                            components/
+                            [id]/
+                            layout.tsx
+                            page.tsx
+                            components/
+                            stores/
+                            NotesStore.ts
+                            layout.tsx
+                            page.tsx
+                            components/
+                            layout.tsx
+                            page.tsx
+                            shared/
+                            components/
+                            contexts/
+                            hooks/
+                            lib/
+                            prisma/
+                            schema.prisma
+                            seed.mjs
+                            client.mjs
+                            supabase/
+                            client.ts
+                            server.ts
+                            middleware.ts
+                            styles/
+                            globals.css
+                            stores/
+                            UIStore.ts
+                            utils/
+                            eslint.config.mjs
+                            middleware.ts
+                            next.config.ts
+                            postcss.config.mjs
+                            tailwind.config.ts
+                            tsconfig.json
+                            ```
+
+  - [ ] **TDD/CDD:**
+    - [ ] Jest
+    - [ ] Cypress
+    - [ ] React Testing Library
+    - [ ] Storybook
 
 ### Completed Features
 
@@ -331,7 +345,7 @@ Push the branch and create a pull request:
 - **Modern Tech Stack:** Built with Next.js, TypeScript, TailwindCSS, Prisma, Supabase, and Vercel.
 - **Component-Driven Development:** Implements reusable and modular components for maintainability and scalability.
 - **Testing and Quality Assurance:** Write unit and integration tests for every new feature.
-    - Use Jest for unit testing, React Testing Library for component tests, and Cypress for end-to-end tests.
+  - Use Jest for unit testing, React Testing Library for component tests, and Cypress for end-to-end tests.
 
 ---
 
