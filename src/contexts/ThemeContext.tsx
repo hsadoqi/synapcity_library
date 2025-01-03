@@ -1,5 +1,6 @@
 'use client'
 
+import { Loader } from 'lucide-react'
 import { createContext, useEffect, useState } from 'react'
 
 interface ThemeProps {
@@ -27,17 +28,18 @@ function ThemeProvider({ children }: { children: React.ReactNode }) {
     }, [])
 
     useEffect(() => {
+        if (!theme || !isThemeLoaded) return
+        const htmlClassList = document.documentElement.classList
         if (theme === 'dark') {
-            document.documentElement.classList.add('dark')
-            localStorage.setItem('theme', 'dark')
+            htmlClassList.add('dark')
         } else {
-            document.documentElement.classList.remove('dark')
-            localStorage.setItem('theme', 'light')
+            htmlClassList.remove('dark')
         }
-    }, [theme])
+        localStorage.setItem('theme', theme)
+    }, [theme, isThemeLoaded])
 
     if (!isThemeLoaded) {
-        return null
+        return <Loader className="animate-spin" />
     }
 
     return (

@@ -19,8 +19,16 @@ export function ThemeToggle() {
     }
 
     return (
-        <Button variant="outline" onClick={toggleTheme}>
-            {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
+        <Button
+            variant="outline"
+            onClick={toggleTheme}
+            data-testid="theme-toggle"
+        >
+            {theme === 'dark' ? (
+                <SunIcon data-testid="sun-icon" />
+            ) : (
+                <MoonIcon data-testid="moon-icon" />
+            )}
         </Button>
     )
 }
