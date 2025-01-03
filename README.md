@@ -146,47 +146,56 @@ Synapcity is a modular and highly customizable application designed for seamless
     - [x] Install and configure TailwindCSS, `postcss`, `auto-prefixer`, `shadcn-ui`
   - [ ] **Basic project structure:**
 
-                        ```md
-                        src/
-                        app/
-                        notes/
-                        components/
-                        [id]/
-                        layout.tsx
-                        page.tsx
-                        components/
-                        stores/
-                        NotesStore.ts
-                        layout.tsx
-                        page.tsx
-                        components/
-                        layout.tsx
-                        page.tsx
-                        shared/
-                        components/
-                        contexts/
-                        hooks/
-                        lib/
-                        prisma/
-                        schema.prisma
-                        seed.mjs
-                        client.mjs
-                        supabase/
-                        client.ts
-                        server.ts
-                        middleware.ts
-                        styles/
-                        globals.css
-                        stores/
-                        UIStore.ts
-                        utils/
-                        eslint.config.mjs
-                        middleware.ts
-                        next.config.ts
-                        postcss.config.mjs
-                        tailwind.config.ts
-                        tsconfig.json
-                        ```
+    - [ ] **Development Environment**: Next.js, TypeScript, TailwindCSS, ESLint, and Prettier.
+    - [ ] **Basic project structure:**
+
+  - [ ] **Development Environment**: Next.js, TypeScript, TailwindCSS, ESLint, and Prettier.
+    - [x] Initialize with Next.js, TypeScript, TailwindCSS
+    - [x] Install and configure ESLint, Prettier, Husky, `lint-changed`
+    - [x] Install and configure TailwindCSS, `postcss`, `auto-prefixer`, `shadcn-ui`
+  - [ ] **Basic project structure:**
+
+                            ```md
+                            src/
+                            app/
+                            notes/
+                            components/
+                            [id]/
+                            layout.tsx
+                            page.tsx
+                            components/
+                            stores/
+                            NotesStore.ts
+                            layout.tsx
+                            page.tsx
+                            components/
+                            layout.tsx
+                            page.tsx
+                            shared/
+                            components/
+                            contexts/
+                            hooks/
+                            lib/
+                            prisma/
+                            schema.prisma
+                            seed.mjs
+                            client.mjs
+                            supabase/
+                            client.ts
+                            server.ts
+                            middleware.ts
+                            styles/
+                            globals.css
+                            stores/
+                            UIStore.ts
+                            utils/
+                            eslint.config.mjs
+                            middleware.ts
+                            next.config.ts
+                            postcss.config.mjs
+                            tailwind.config.ts
+                            tsconfig.json
+                            ```
 
   - [ ] **TDD/CDD:**
     - [ ] Jest
