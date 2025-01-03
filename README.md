@@ -78,6 +78,8 @@ Synapcity is a modular and highly customizable application designed for seamless
 
 - [**ESLint**](https://nextjs.org/docs/app/api-reference/config/eslint) (for static code analysis and enforcing coding standards)
 - [**Prettier**](https://prettier.io/docs/en/) (for code formatting consistency)
+- [**Husky**](https://typicode.github.io/husky/) (for Git hooks, such as pre-commit, pre-push hooks, and enforcing code quality and formatting)
+- [**lint-changed**](https://github.com/artsy/lint-changed) (for linting only the files that have changed, ensuring faster linting and reducing unnecessary checks)
 
 - **GitHub Actions** (for CI/CD workflows and automating tests/deployment)
 
@@ -139,49 +141,52 @@ Synapcity is a modular and highly customizable application designed for seamless
 - [ ] **Set up**:
 
   - [ ] **Development Environment**: Next.js, TypeScript, TailwindCSS, ESLint, and Prettier.
+    - [x] Initialize with Next.js, TypeScript, TailwindCSS
+    - [x] Install and configure ESLint, Prettier, Husky, `lint-changed`
+    - [x] Install and configure TailwindCSS, `postcss`, `auto-prefixer`, `shadcn-ui`
   - [ ] **Basic project structure:**
 
-                    ```md
-                    src/
-                    app/
-                    notes/
-                    components/
-                    [id]/
-                    layout.tsx
-                    page.tsx
-                    components/
-                    stores/
-                    NotesStore.ts
-                    layout.tsx
-                    page.tsx
-                    components/
-                    layout.tsx
-                    page.tsx
-                    shared/
-                    components/
-                    contexts/
-                    hooks/
-                    lib/
-                    prisma/
-                    schema.prisma
-                    seed.mjs
-                    client.mjs
-                    supabase/
-                    client.ts
-                    server.ts
-                    middleware.ts
-                    styles/
-                    globals.css
-                    stores/
-                    UIStore.ts
-                    utils/
-                    eslint.config.mjs
-                    middleware.ts
-                    next.config.ts
-                    postcss.config.mjs
-                    tailwind.config.ts
-                    tsconfig.json
-                    ```
+                        ```md
+                        src/
+                        app/
+                        notes/
+                        components/
+                        [id]/
+                        layout.tsx
+                        page.tsx
+                        components/
+                        stores/
+                        NotesStore.ts
+                        layout.tsx
+                        page.tsx
+                        components/
+                        layout.tsx
+                        page.tsx
+                        shared/
+                        components/
+                        contexts/
+                        hooks/
+                        lib/
+                        prisma/
+                        schema.prisma
+                        seed.mjs
+                        client.mjs
+                        supabase/
+                        client.ts
+                        server.ts
+                        middleware.ts
+                        styles/
+                        globals.css
+                        stores/
+                        UIStore.ts
+                        utils/
+                        eslint.config.mjs
+                        middleware.ts
+                        next.config.ts
+                        postcss.config.mjs
+                        tailwind.config.ts
+                        tsconfig.json
+                        ```
 
   - [ ] **TDD/CDD:**
     - [ ] Jest
