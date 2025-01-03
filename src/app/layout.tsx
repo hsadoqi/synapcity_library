@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { ThemeToggle } from '@/components'
 import Providers from './providers'
+import '@/styles/shadcn-ui.css'
+import '@/styles/variables.css'
 import '@/styles/globals.css'
 
 const geistSans = Geist({
