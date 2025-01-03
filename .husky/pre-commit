@@ -4,4 +4,5 @@ echo "Node version: $(node -v)"
 echo "NPM version: $(npm -v)"
 echo "PATH: $PATH"
 echo "Current working directory: $(pwd)"
+
 npx lint-staged

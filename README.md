@@ -30,11 +30,13 @@ Synapcity is a modular and highly customizable application designed for seamless
 - [**React**](https://react.dev/reference/react) (core library for building UI components)
 - [**Zustand**](https://zustand.docs.pmnd.rs/guides/nextjs) & [**React Context**](https://react.dev/reference/react/useContext) (for state management across the application)
 - [**React Query**](https://tanstack.com/query/v4/docs/framework/react/guides/ssr) / [**SWR**](https://swr.vercel.app/docs/with-nextjs) (for client-side data fetching, caching, and synchronization)
+
   - [How to set up React Query in Next.js](https://zustand.docs.pmnd.rs/guides/nextjs)
 
 - [**shadcn-ui**](https://ui.shadcn.com/docs/installation/next) (UI component library for building accessible and reusable components)
 - [**TailwindCSS**](https://tailwindcss.com/docs/installation) (utility-first CSS framework for responsive and maintainable styles)
 - [**CSS Modules**](https://github.com/css-modules/css-modules) (for scoped and modular styling)
+
   - [What are CSS Modules](https://css-tricks.com/css-modules-part-1-need/)
   - [Component-Scoped Styles with CSS Modules](https://www.gatsbyjs.com/docs/how-to/styling/css-modules/)
 
@@ -74,8 +76,8 @@ Synapcity is a modular and highly customizable application designed for seamless
 
 ### Development Tools
 
-- **ESLint** (for static code analysis and enforcing coding standards)
-- **Prettier** (for code formatting consistency)
+- [**ESLint**](https://nextjs.org/docs/app/api-reference/config/eslint) (for static code analysis and enforcing coding standards)
+- [**Prettier**](https://prettier.io/docs/en/) (for code formatting consistency)
 
 - **GitHub Actions** (for CI/CD workflows and automating tests/deployment)
 
@@ -135,50 +137,51 @@ Synapcity is a modular and highly customizable application designed for seamless
 ### In Progress
 
 - [ ] **Set up**:
+
   - [ ] **Development Environment**: Next.js, TypeScript, TailwindCSS, ESLint, and Prettier.
   - [ ] **Basic project structure:**
 
-      ```md
-      src/
-        app/
-          notes/
-            components/
-            [id]/
-              layout.tsx
-              page.tsx
-            components/
-            stores/
-              NotesStore.ts
-            layout.tsx
-            page.tsx
-          components/
-          layout.tsx
-          page.tsx
-        shared/
-          components/
-          contexts/
-          hooks/
-          lib/
-            prisma/
-              schema.prisma
-              seed.mjs
-              client.mjs
-            supabase/
-              client.ts
-              server.ts
-            middleware.ts
-          styles/
-            globals.css
-          stores/
-            UIStore.ts
-          utils/
-      eslint.config.mjs
-      middleware.ts
-      next.config.ts 
-      postcss.config.mjs
-      tailwind.config.ts
-      tsconfig.json
-      ```
+                    ```md
+                    src/
+                    app/
+                    notes/
+                    components/
+                    [id]/
+                    layout.tsx
+                    page.tsx
+                    components/
+                    stores/
+                    NotesStore.ts
+                    layout.tsx
+                    page.tsx
+                    components/
+                    layout.tsx
+                    page.tsx
+                    shared/
+                    components/
+                    contexts/
+                    hooks/
+                    lib/
+                    prisma/
+                    schema.prisma
+                    seed.mjs
+                    client.mjs
+                    supabase/
+                    client.ts
+                    server.ts
+                    middleware.ts
+                    styles/
+                    globals.css
+                    stores/
+                    UIStore.ts
+                    utils/
+                    eslint.config.mjs
+                    middleware.ts
+                    next.config.ts
+                    postcss.config.mjs
+                    tailwind.config.ts
+                    tsconfig.json
+                    ```
 
   - [ ] **TDD/CDD:**
     - [ ] Jest
@@ -188,7 +191,7 @@ Synapcity is a modular and highly customizable application designed for seamless
 
 ### Completed Features
 
-- [X] **Define scope and goals**: Documented in README.
+- [x] **Define scope and goals**: Documented in README.
 
 ### Ideas & Future Tasks
 
