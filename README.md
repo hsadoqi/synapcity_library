@@ -25,16 +25,20 @@ Synapcity is a modular and highly customizable application designed for seamless
 
 ### Frontend
 
-- **Next.js** (with App Router for file-based routing)
-- **TypeScript** (for type safety across the codebase)
-- **React** (core library for building UI components)
-- **Zustand** & **React Context** (for state management across the application)
-- **React Query** / **SWR** (for client-side data fetching, caching, and synchronization)
-- **Lexical** (rich text editor framework for dynamic content creation)
+- [**Next.js**](https://nextjs.org/docs) (with App Router for file-based routing)
+- [**TypeScript**](https://www.typescriptlang.org/docs/) (for type safety across the codebase)
+- [**React**](https://react.dev/reference/react) (core library for building UI components)
+- [**Zustand**](https://zustand.docs.pmnd.rs/guides/nextjs) & [**React Context**](https://react.dev/reference/react/useContext) (for state management across the application)
+- [**React Query**](https://tanstack.com/query/v4/docs/framework/react/guides/ssr) / [**SWR**](https://swr.vercel.app/docs/with-nextjs) (for client-side data fetching, caching, and synchronization)
+  - [How to set up React Query in Next.js](https://zustand.docs.pmnd.rs/guides/nextjs)
 
-- **shadcn-ui** (UI component library for building accessible and reusable components)
-- **TailwindCSS** (utility-first CSS framework for responsive and maintainable styles)
-- **CSS Modules** (for scoped and modular styling)
+- [**shadcn-ui**](https://ui.shadcn.com/docs/installation/next) (UI component library for building accessible and reusable components)
+- [**TailwindCSS**](https://tailwindcss.com/docs/installation) (utility-first CSS framework for responsive and maintainable styles)
+- [**CSS Modules**](https://github.com/css-modules/css-modules) (for scoped and modular styling)
+  - [What are CSS Modules](https://css-tricks.com/css-modules-part-1-need/)
+  - [Component-Scoped Styles with CSS Modules](https://www.gatsbyjs.com/docs/how-to/styling/css-modules/)
+
+- [**Lexical**](https://lexical.dev/docs/intro) (rich text editor framework for dynamic content creation)
 
 ### Backend
 
