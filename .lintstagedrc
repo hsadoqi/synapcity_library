@@ -4,7 +4,5 @@
         "npx eslint --fix",
         "npx eslint"
     ],
-    "*/**/*.{json,css,md,mdx}": [
-        "npx prettier --write"
-    ]
+    "*/**/*.{json,css,md,mdx}": ["npx prettier --write"]
 }
