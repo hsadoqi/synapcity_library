@@ -15,7 +15,7 @@ const config: Config = {
     // Stop running tests after `n` failures
     bail: 3,
 
-    // The directory where Jest should store its cached dependency information
+    // The directory where Jest should store its  cached dependency information
     // cacheDirectory: "/private/var/folders/1b/mp7nng591334zdkc57s4r17m0000gn/T/jest_dx",
 
     // Automatically clear mock calls, instances, contexts and results before every test
