@@ -49,6 +49,7 @@ jobs:
         uses: cypress-io/github-action@v6
         env:
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
         with:
           wait-on: "http://localhost:8080"
           build: npm run build
@@ -57,6 +58,7 @@ jobs:
           record: true
           record-key: ${{ secrets.CYPRESS_RECORD_KEY }}
           auto-cancel-after-failures: 2
+          working-directory: ./cypress-tests
 
       - uses: actions/upload-artifact@v4
         with:
