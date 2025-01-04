@@ -31,9 +31,6 @@ jobs:
       - name: Start Next.js app
         run: npm run start -- --port 8080 &
 
-      - name: Wait for App
-        run: npx wait-on 'http://localhost:8080'
-
       - name: Cypress run
         uses: cypress-io/github-action@v6
         env:
@@ -42,6 +39,7 @@ jobs:
           build: npm run build
           start: npm start
           wait-on: "http://localhost:8080"
+          supportFile: false
           component: true
           record: true
           record-key: ${{ secrets.CYPRESS_RECORD_KEY }}
