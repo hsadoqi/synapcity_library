@@ -1,13 +1,13 @@
 {
-  "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleResolution": "node",
-    "jsx": "react-jsx",
-    "strict": true,
-    "baseUrl": ".",
-    "allowJs": true,
-  },
-  "extends": "../para-synapcity/tsconfig.json",
-  "include": ["src/**/*", "cypress/**/*.cy.js", "cypress/**/*.cy.ts", "**/*.ts", "**/*.tsx"]
+    "compilerOptions": {
+        "target": "ESNext",
+        "module": "ESNext",
+        "moduleResolution": "node",
+        "jsx": "react-jsx",
+        "strict": true,
+        "baseUrl": ".",
+        "allowJs": true
+    },
+    "extends": "../tsconfig.json",
+    "include": ["src/**/*", "cypress/**/*.cy.js", "**/*.ts", "**/*.tsx"]
 }
