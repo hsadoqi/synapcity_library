@@ -31,7 +31,8 @@ jobs:
 
       - name: Install Next.js project and dependencies
         run: |
-          npm ci
+          cd ..
+          npm ci --legacy-peer-deps
 
       - name: Build Next.js app
         run: |
@@ -41,33 +42,29 @@ jobs:
         run: |
           npm run start -- --port 8080 &
 
-      - name: Wait for Next.js app to be ready
-        run: |
-          curl --silent --fail http://localhost:8080 || exit 1
-
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
         env:
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
         with:
-          wait-on: "http://localhost:8080"
+          working-directory: cypress-tests
           build: npm run build
           start: npm run start
+          wait-on: "http://localhost:8080"
           component: true
           record: true
           record-key: ${{ secrets.CYPRESS_RECORD_KEY }}
           auto-cancel-after-failures: 2
-          working-directory: ./cypress-tests
 
       - uses: actions/upload-artifact@v4
         with:
           name: cypress-screenshots
-          path: cypress/screenshots
+          path: cypress-tests/cypress/screenshots
           if-no-files-found: ignore
 
       - uses: actions/upload-artifact@v4
         with:
           name: cypress-videos
-          path: cypress/videos
+          path: cypress-tests/cypress/videos
           if-no-files-found: ignore
