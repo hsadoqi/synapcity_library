@@ -26,26 +26,25 @@ jobs:
         run: npm ci
 
       - name: Build Next.js app
-        run: npm run build
+        run: |
+          echo "Building Next.js app"
+          npm run build
 
       - name: Start Next.js app
-        run: npm run start -- --port 8080 &
-
-      - name: Wait for App
-        run: npx wait-on 'http://localhost:8080'
+        run: |
+          npm run start -- --port 8080 &
+          npx wait-on http://localhost:8080
 
       - name: Cypress run
         uses: cypress-io/github-action@v6
+        with:
+          record: true
+          start: npm run start -- --port 8080
+          wait-on: "http://localhost:8080"
+          auto-cancel-after-failures: 2
         env:
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
-        with:
-          build: npm run build
-          start: npm start
-          wait-on: "http://localhost:8080"
-          component: true
-          record: true
-          record-key: ${{ secrets.CYPRESS_RECORD_KEY }}
-          auto-cancel-after-failures: 2
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
 
       - uses: actions/upload-artifact@v4
         with:
