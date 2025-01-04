@@ -139,20 +139,12 @@ Synapcity is a modular and highly customizable application designed for seamless
 ### In Progress
 
 - [ ] **Set up**:
-
-    - [ ] **Development Environment**: Next.js, TypeScript, TailwindCSS, ESLint, and Prettier.
-        - [x] Initialize with Next.js, TypeScript, TailwindCSS
-        - [x] Install and configure ESLint, Prettier, Husky, `lint-changed`
-        - [x] Install and configure TailwindCSS, `postcss`, `auto-prefixer`, `shadcn-ui`
-    - [ ] **Basic project structure:**
-
-        - [ ] **Development Environment**: Next.js, TypeScript, TailwindCSS, ESLint, and Prettier.
-        - [ ] **Basic project structure:**
-
-    - [ ] **Development Environment**: Next.js, TypeScript, TailwindCSS, ESLint, and Prettier.
-        - [x] Initialize with Next.js, TypeScript, TailwindCSS
-        - [x] Install and configure ESLint, Prettier, Husky, `lint-changed`
-        - [x] Install and configure TailwindCSS, `postcss`, `auto-prefixer`, `shadcn-ui`
+    - [ ] **TDD/CDD:**
+        - [x] Jest
+        - [x] Cypress
+        - [x] React Testing Library
+        - [x] Storybook
+        - [ ] Playwright
     - [ ] **Basic project structure:**
 
                                         ```md
@@ -197,14 +189,13 @@ Synapcity is a modular and highly customizable application designed for seamless
                                         tsconfig.json
                                         ```
 
-    - [ ] **TDD/CDD:**
-        - [x] Jest
-        - [ ] Cypress
-        - [ ] React Testing Library
-        - [x] Storybook
-
 ### Completed Features
 
+
+- [x] **Development Environment**: Next.js, TypeScript, TailwindCSS, ESLint, and Prettier.
+    - [x] Initialize with Next.js, TypeScript, TailwindCSS
+    - [x] Install and configure ESLint, Prettier, Husky, `lint-changed`
+    - [x] Install and configure TailwindCSS, `postcss`, `auto-prefixer`, `shadcn-ui`
 - [x] **Define scope and goals**: Documented in README.
 
 ### Ideas & Future Tasks
