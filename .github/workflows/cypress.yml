@@ -6,57 +6,59 @@ on:
       - release/*
   pull_request:
   workflow_dispatch:
+
 jobs:
   cypress-run:
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Cache Cypress and Node modules
         uses: actions/cache@v3
         with:
           path: |
             ~/.cache/Cypress
-            node_modules
+            cypress-tests/node_modules
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Install Cypress
-        run: npm ci
-
-      - name: Build Next.js app
+      - name: Install Cypress in cypress-tests
         run: |
-          echo "Building Next.js app"
+          cd ./cypress-tests
+          npm ci
+
+      - name: Build Next.js app in parent folder
+        run: |
+          cd ..
           npm run build
 
-      - name: Start Next.js app
+      - name: Start Next.js app in parent folder
         run: |
+          cd ..
           npm run start -- --port 8080 &
           npx wait-on http://localhost:8080
 
-      - name: Cypress run
+      - name: Cypress run from cypress-tests
         uses: cypress-io/github-action@v6
         with:
-          record: true
           start: npm run start -- --port 8080
           wait-on: "http://localhost:8080"
+          record: true
           auto-cancel-after-failures: 2
         env:
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-        run: |
-          cd ./cypress-tests
-          npx cypress run --browser chromium
 
       - uses: actions/upload-artifact@v4
         with:
           name: cypress-screenshots
-          path: cypress/screenshots
+          path: cypress-tests/cypress/screenshots
           if-no-files-found: ignore
 
       - uses: actions/upload-artifact@v4
         with:
           name: cypress-videos
-          path: cypress/videos
+          path: cypress-tests/cypress/videos
           if-no-files-found: ignore
