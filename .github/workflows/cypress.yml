@@ -43,18 +43,17 @@ jobs:
 
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
-        env:
-          CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
         with:
           working-directory: cypress-tests
-          build: npm run build
-          start: npm run start
           wait-on: "http://localhost:8080"
           component: true
           record: true
           auto-cancel-after-failures: 2
-
+          publish-summary: true
+        env:
+          CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          
       - uses: actions/upload-artifact@v4
         with:
           name: cypress-screenshots
