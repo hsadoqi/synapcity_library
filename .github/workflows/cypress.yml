@@ -27,7 +27,7 @@ jobs:
       - name: Install Cypress in cypress-tests
         run: |
           cd ./cypress-tests
-          npm ci
+          npm ci --legacy-peer-deps
 
       - name: Build Next.js app in parent folder
         run: |
