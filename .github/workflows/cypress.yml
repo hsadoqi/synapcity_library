@@ -44,7 +44,7 @@ jobs:
       - name: Run Cypress tests
         run: |
           cd cypress-tests
-          npm run cypress --headless --browser chromium
+          npm run test
 
       - uses: actions/upload-artifact@v4
         with:
