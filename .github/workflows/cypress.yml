@@ -31,7 +31,6 @@ jobs:
 
       - name: Install Next.js project and dependencies
         run: |
-          cd ../
           npm ci
 
       - name: Build Next.js app
