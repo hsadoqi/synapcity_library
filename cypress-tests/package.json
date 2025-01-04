@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "main": "index.js",
     "scripts": {
-        "test": "npm run start & npx cypress open --browser chromium",
+        "test": "npm run start & npx cypress run --headless --browser chromium",
         "start": "npm run start --prefix ../"
     },
     "keywords": [],
