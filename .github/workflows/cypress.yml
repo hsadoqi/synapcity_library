@@ -6,19 +6,19 @@ on:
       - release/*
   pull_request:
   workflow_dispatch:
-
 jobs:
   cypress-run:
     runs-on: ubuntu-24.04
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Cache Cypress and Node modules
+      - name: Cache Node modules
         uses: actions/cache@v3
         with:
           path: |
             ~/.cache/Cypress
+            node_modules
             cypress-tests/node_modules
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
@@ -26,39 +26,46 @@ jobs:
 
       - name: Install Cypress in cypress-tests
         run: |
-          cd ./cypress-tests
+          cd cypress-tests
           npm ci --legacy-peer-deps
 
-      - name: Build Next.js app in parent folder
+      - name: Install Next.js project and dependencies
         run: |
-          cd ..
+          npm ci
+
+      - name: Build Next.js app
+        run: |
           npm run build
 
-      - name: Start Next.js app in parent folder
+      - name: Start Next.js app
         run: |
-          cd ..
           npm run start -- --port 8080 &
-          npx wait-on http://localhost:8080
 
-      - name: Cypress run from cypress-tests
+      - name: Wait for Next.js app to be ready
+        run: |
+          curl --silent --fail http://localhost:8080 || exit 1
+
+      - name: Run Cypress tests
         uses: cypress-io/github-action@v6
-        with:
-          start: npm run start -- --port 8080
-          wait-on: "http://localhost:8080"
-          record: true
-          auto-cancel-after-failures: 2
         env:
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+        with:
+          wait-on: "http://localhost:8080"
+          build: npm run build
+          start: npm run start
+          component: true
+          record: true
+          record-key: ${{ secrets.CYPRESS_RECORD_KEY }}
+          auto-cancel-after-failures: 2
 
       - uses: actions/upload-artifact@v4
         with:
           name: cypress-screenshots
-          path: cypress-tests/cypress/screenshots
+          path: cypress/screenshots
           if-no-files-found: ignore
 
       - uses: actions/upload-artifact@v4
         with:
           name: cypress-videos
-          path: cypress-tests/cypress/videos
+          path: cypress/videos
           if-no-files-found: ignore
