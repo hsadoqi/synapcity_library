@@ -3,11 +3,14 @@ on:
   push:
     branches:
       - main
+      - testing/*
       - release/*
+      - features/*
   pull_request:
   workflow_dispatch:
 jobs:
   cypress-run:
+    timeout-minutes: 60
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout code
