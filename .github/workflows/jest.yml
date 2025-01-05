@@ -1,11 +1,18 @@
 name: Jest Tests
 on:
+  push:
+    branches:
+      - main
+      - testing/*
+      - release/*
+      - features/*
   pull_request:
     branches:
       - main
       - testing/*
       - release/*
       - features/*
+  workflow_dispatch:
 jobs:
   jest-run:
     runs-on: ubuntu-24.04

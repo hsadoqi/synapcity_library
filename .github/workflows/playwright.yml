@@ -6,7 +6,12 @@ on:
       - testing/*
       - release/*
       - features/*
-  pull_request:
+  pull-request:
+    branches:
+      - main
+      - testing/*
+      - release/*
+      - features/*
   workflow_dispatch:
 jobs:
   playwright-run:

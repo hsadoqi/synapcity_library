@@ -1,11 +1,18 @@
 name: Chromatic Deployment
 on:
+  push:
+    branches:
+      - main
+      - testing/*
+      - release/*
+      - features/*
   pull-request:
     branches:
       - main
       - testing/*
       - release/*
       - features/*
+  workflow_dispatch:
 jobs:
   chromatic-run:
     timeout-minutes: 60
