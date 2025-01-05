@@ -141,12 +141,12 @@ Synapcity is a modular and highly customizable application designed for seamless
 
 - [ ] **Set up**:
 
-  - [ ] **TDD/CDD:**
+  - [x] **TDD/CDD:**
     - [x] Jest
     - [x] Cypress
     - [x] React Testing Library
     - [x] Storybook
-    - [ ] Playwright
+    - [x] Playwright
   - [ ] **Basic project structure:**
 
     ````md
@@ -197,7 +197,13 @@ Synapcity is a modular and highly customizable application designed for seamless
 
 ### Completed Features
 
-- [x] **Development Environment**: Next.js, TypeScript, TailwindCSS, ESLint, and Prettier.
+- [x] **Set Up: TDD/CDD:**
+  - [x] Jest
+  - [x] Cypress
+  - [x] React Testing Library
+  - [x] Storybook
+  - [x] Playwright
+- [x] **Set Up: Development Environment**: Next.js, TypeScript, TailwindCSS, ESLint, and Prettier.
   - [x] Initialize with Next.js, TypeScript, TailwindCSS
   - [x] Install and configure ESLint, Prettier, Husky, `lint-changed`
   - [x] Install and configure TailwindCSS, `postcss`, `auto-prefixer`, `shadcn-ui`
