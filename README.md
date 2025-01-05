@@ -61,12 +61,12 @@ Synapcity is a modular and highly customizable application designed for seamless
 
 ### Testing Tools
 
-- **Jest** (for unit testing and test-driven development)
-- **React Testing Library** (for component-level testing)
+- [**Jest**](https://jestjs.io/) (for unit testing and test-driven development)
+- [**React Testing Library**](https://testing-library.com/docs/react-testing-library/intro/) (for component-level testing)
 
-- **Cypress** (for end-to-end testing)
-- **Playwright** (cross-browser)
-- **Storybook** (for isolated UI component development and testing)
+- [**Cypress**](https://docs.cypress.io/app/get-started/why-cypress) (for end-to-end testing)
+- [**Playwright**](https://playwright.dev/docs/intro) (cross-browser)
+- [**Storybook**](https://storybook.js.org/docs) (for isolated UI component development and testing)
 
 ### Development Environment
 
@@ -91,7 +91,7 @@ Synapcity is a modular and highly customizable application designed for seamless
 - **Image Optimization (Next.js)** (automatic image optimization, built into Next.js)
 - **Cloudinary / Imgix** (for advanced image and media optimization)
 
-- **Sentry** (for error tracking and performance monitoring)
+- [**Sentry**](https://docs.sentry.io/) (for error tracking and performance monitoring)
 - [**PWA (Progressive Web App)**](https://nextjs.org/docs/app/building-your-application/configuring/progressive-web-apps) (for offline support and better mobile experience)
 
 ### Real-Time & Collaboration
@@ -107,15 +107,15 @@ Synapcity is a modular and highly customizable application designed for seamless
 - **GitHub** (for repository hosting and collaboration)
 
 - **Vercel** (for automatic deployment from GitHub, optimized for Next.js)
-- **CircleCI** / **Travis CI** (for custom CI/CD pipelines)
+- [**CircleCI**](https://circleci.com/) / [**Travis CI**](https://www.travis-ci.com/product/) (for custom CI/CD pipelines)
 
 ### Monitoring & Analytics
 
-- **Google Analytics** (for tracking user interactions and behavior)
-- **Mixpanel** (for detailed user engagement and analytics)
+- [**Google Analytics**](https://developers.google.com/analytics) (for tracking user interactions and behavior)
+- [**Mixpanel**](https://docs.mixpanel.com/docs/what-is-mixpanel) (for detailed user engagement and analytics)
 
-- **LogRocket** (for session replay and debugging)
-- **Sentry** (for error and performance monitoring)
+- [**LogRocket**](https://docs.logrocket.com/docs/introduction) (for session replay and debugging)
+- [**Sentry**](https://docs.sentry.io/) (for error and performance monitoring)
 
 ### Documentation & Collaboration
 
@@ -132,8 +132,8 @@ Synapcity is a modular and highly customizable application designed for seamless
 
 #### **Planning & Setup**
 
-- [ ] **Confirm tech stack:** Next.js, TypeScript, TailwindCSS, etc.
-- [ ] **Set up the development environment** (Version control, CI/CD, Project structure)
+- [x] **Confirm tech stack:** Next.js, TypeScript, TailwindCSS, etc.
+- [x] **Set up the development environment** (Version control, CI/CD, Project structure)
 - [ ] **Create wireframes/UI design** for initial pages (Home, Projects, Areas)
 - [ ] **Basic UI Layout**: Set up the navigation, sidebar, and responsive design.
 
