@@ -1,5 +1,4 @@
 name: Chromatic Deployment
-
 on:
   push:
     branches:
@@ -7,10 +6,9 @@ on:
       - testing/*
       - release/*
       - features/*
-
 jobs:
   chromatic-run:
-    name: Deploy Storybook to Chromatic
+    timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
