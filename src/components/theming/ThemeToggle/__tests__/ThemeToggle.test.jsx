@@ -1,7 +1,10 @@
 import { render, screen, fireEvent } from '@testing-library/react'
 import { ThemeToggle } from '../ThemeToggle'
 import { createMockLocalStorage } from '../../../../__mocks__/localStorage'
-import { renderWithThemeContext } from './utils/renderWithThemeContext'
+import {
+    renderWithoutThemeContext,
+    renderWithThemeContext,
+} from './utils/renderWithThemeContext'
 
 describe('ThemeToggle Component', () => {
     let localStorageMock
@@ -60,7 +63,7 @@ describe('ThemeToggle Component', () => {
     })
 
     it('does not render anything if context is undefined', () => {
-        render(<ThemeToggle />)
+        renderWithoutThemeContext()
         expect(screen.queryByRole('button')).not.toBeInTheDocument()
     })
 })

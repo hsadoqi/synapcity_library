@@ -47,3 +47,19 @@ export const renderWithThemeContext = (
         </ThemeProviderWrapper>,
     )
 }
+export const renderWithoutThemeContext = (
+    setTheme?: (theme?: ThemeType | string) => void,
+    isDarkMode?: boolean,
+) => {
+    if (!setTheme || !isDarkMode) {
+        return null
+    }
+
+    const toggleTheme = () => {
+        setTheme(isDarkMode ? 'light' : 'dark')
+    }
+
+    return render(
+        <ThemeToggle toggleDarkMode={toggleTheme} isDarkMode={isDarkMode} />,
+    )
+}

@@ -9,20 +9,10 @@ export function ThemeToggle({
     isDarkMode?: boolean
     toggleDarkMode?: () => void
 }) {
-    const handleTheme = () => {
-        if (toggleDarkMode) {
-            toggleDarkMode()
-        }
-    }
-
-    if (!toggleDarkMode) {
-        return null
-    }
-
     return (
         <Button
             variant="outline"
-            onClick={handleTheme}
+            onClick={toggleDarkMode}
             data-testid="theme-toggle"
             className={clsx({
                 'bg-gray-950 text-white': !isDarkMode,
