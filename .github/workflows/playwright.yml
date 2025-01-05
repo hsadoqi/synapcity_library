@@ -38,7 +38,7 @@ jobs:
         run: npm run build
 
       - name: Start project
-        run: npm run start
+        run: npm run start -- --port 8080 &
 
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
