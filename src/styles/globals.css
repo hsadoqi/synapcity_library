@@ -23,7 +23,6 @@ body.no-scroll {
     margin: 0;
     padding: 0;
 }
-
 @layer base {
     body {
         @apply bg-background text-foreground;

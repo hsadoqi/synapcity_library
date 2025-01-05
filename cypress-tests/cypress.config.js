@@ -11,6 +11,9 @@ module.exports = {
         },
     },
     e2e: {
+        screenshotsFolder: 'cypress-tests/cypress/screenshots',
+        videosFolder: 'cypress-tests/cypress/videos',
+        video: true,
         setupNodeEvents(on, config) {
             const options = {
                 resolve: {

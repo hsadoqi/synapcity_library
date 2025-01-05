@@ -1,19 +1,28 @@
 import { render, screen, fireEvent } from '@testing-library/react'
 import { ThemeToggle } from '../ThemeToggle'
-import { ThemeContext } from '../../../../contexts'
-
-const renderWithThemeContext = (theme, setTheme) => {
-    return render(
-        <ThemeContext.Provider value={{ theme, setTheme }}>
-            <ThemeToggle />
-        </ThemeContext.Provider>,
-    )
-}
+import { createMockLocalStorage } from '../../../../__mocks__/localStorage'
+import {
+    renderWithoutThemeContext,
+    renderWithThemeContext,
+} from './utils/renderWithThemeContext'
 
 describe('ThemeToggle Component', () => {
+    let localStorageMock
+
+    beforeEach(() => {
+        localStorageMock = createMockLocalStorage() // Create a fresh mock
+    })
+
+    afterEach(() => {
+        if (localStorageMock.clear) {
+            localStorageMock.clear()
+        }
+        jest.restoreAllMocks()
+    })
+
     it('renders correctly with dark theme', () => {
         const setTheme = jest.fn()
-        renderWithThemeContext('dark', setTheme)
+        renderWithThemeContext(setTheme, true)
 
         expect(screen.getByRole('button')).toContainElement(
             screen.getByTestId('sun-icon'),
@@ -22,7 +31,7 @@ describe('ThemeToggle Component', () => {
 
     it('renders correctly with light theme', () => {
         const setTheme = jest.fn()
-        renderWithThemeContext('light', setTheme)
+        renderWithThemeContext(setTheme, false)
 
         expect(screen.getByRole('button')).toContainElement(
             screen.getByTestId('moon-icon'),
@@ -31,7 +40,7 @@ describe('ThemeToggle Component', () => {
 
     it('calls setTheme with light when theme is dark and button is clicked', () => {
         const setTheme = jest.fn()
-        renderWithThemeContext('dark', setTheme)
+        renderWithThemeContext(setTheme, true)
 
         fireEvent.click(screen.getByRole('button'))
         expect(setTheme).toHaveBeenCalledWith('light')
@@ -39,19 +48,22 @@ describe('ThemeToggle Component', () => {
 
     it('calls setTheme with dark when theme is light and button is clicked', () => {
         const setTheme = jest.fn()
-        renderWithThemeContext('light', setTheme)
+        renderWithThemeContext(setTheme, false)
 
         fireEvent.click(screen.getByRole('button'))
         expect(setTheme).toHaveBeenCalledWith('dark')
     })
 
-    it('does not render anything if context is undefined', () => {
-        render(
-            <ThemeContext.Provider value={null}>
-                <ThemeToggle />
-            </ThemeContext.Provider>,
-        )
+    it('should persist theme in localStorage', () => {
+        localStorageMock.setItem('theme', 'dark')
+        expect(localStorageMock.getItem('theme')).toBe('dark')
 
-        expect(screen.queryByRole('button')).toBeNull()
+        localStorageMock.clear()
+        expect(localStorageMock.getItem('theme')).toBeNull()
+    })
+
+    it('does not render anything if context is undefined', () => {
+        renderWithoutThemeContext()
+        expect(screen.queryByRole('button')).not.toBeInTheDocument()
     })
 })
