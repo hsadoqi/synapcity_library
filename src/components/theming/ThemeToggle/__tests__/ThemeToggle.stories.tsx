@@ -26,8 +26,8 @@ const meta = {
                         initialTheme={theme}
                         toggleDarkMode={() =>
                             context.args.isDarkMode
-                                ? setTheme('light')
-                                : setTheme('dark')
+                                ? setTheme('dark')
+                                : setTheme('light')
                         }
                     />
                 </ThemeProvider>
