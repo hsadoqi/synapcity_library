@@ -12,9 +12,14 @@
         "prepare": "husky",
         "storybook": "storybook dev -p 6006",
         "build-storybook": "storybook build",
-        "test": "jest",
-        "test:watch": "jest --watch",
-        "cypress": "npm run test --prefix ./cypress-tests"
+        "jest": "jest",
+        "jest:watch": "jest --watch",
+        "cypress": "npm run test --prefix ./cypress-tests",
+        "playwright": "npm run start & npx playwright test",
+        "playwright:ui": "npx playwright test --ui",
+        "playwright:debug": "npx playwright test --debug",
+        "playwright:gen": "npx playwright codegen",
+        "playwright:show": "npx playwright show-report"
     },
     "dependencies": {
         "@radix-ui/react-slot": "^1.1.1",
@@ -31,6 +36,7 @@
     "devDependencies": {
         "@chromatic-com/storybook": "^3.2.3",
         "@eslint/eslintrc": "^3",
+        "@playwright/test": "^1.49.1",
         "@storybook/addon-essentials": "^8.4.7",
         "@storybook/addon-interactions": "^8.4.7",
         "@storybook/addon-onboarding": "^8.4.7",

@@ -3,11 +3,14 @@ on:
   push:
     branches:
       - main
+      - testing/*
       - release/*
+      - features/*
   pull_request:
   workflow_dispatch:
 jobs:
   cypress-run:
+    timeout-minutes: 60
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout code
@@ -29,15 +32,15 @@ jobs:
           cd cypress-tests
           npm ci --legacy-peer-deps
 
-      - name: Install Next.js project and dependencies
+      - name: Install main project's dependencies
         run: |
           npm ci
 
-      - name: Build Next.js app
+      - name: Build project
         run: |
           npm run build
 
-      - name: Start Next.js app
+      - name: Start project
         run: |
           npm run start -- --port 8080 &
 
@@ -50,10 +53,11 @@ jobs:
         with:
           name: cypress-screenshots
           path: cypress-tests/cypress/screenshots
-          if-no-files-found: ignore
+          retention-days: 30
 
       - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
         with:
           name: cypress-videos
           path: cypress-tests/cypress/videos
-          if-no-files-found: ignore
+          retention-days: 30
