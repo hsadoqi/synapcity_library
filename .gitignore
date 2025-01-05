@@ -41,3 +41,8 @@ next-env.d.ts
 *storybook.log
 
 para-synapcity/.gitignore
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
