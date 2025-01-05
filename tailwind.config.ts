@@ -5,8 +5,8 @@ export default {
     mode: 'jit',
     darkMode: ['class'],
     content: [
-        './src/app/**/*.{js,ts,jsx,tsx}',
-        './src/components/**/*.{js,ts,jsx,tsx}',
+        './src/app/**/*.{mdx,js,ts,jsx,tsx}',
+        './src/components/**/*.{mdx,js,ts,jsx,tsx}',
     ],
     theme: {
         extend: {

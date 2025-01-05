@@ -1,0 +1,9 @@
+node_modules
+.next
+
+cypress/videos/
+cypress/screenshots/
+
+.cypress/
+
+.env*

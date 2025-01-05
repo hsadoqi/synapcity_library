@@ -1,0 +1,59 @@
+name: Cypress Tests
+on:
+  push:
+    branches:
+      - main
+      - release/*
+  pull_request:
+  workflow_dispatch:
+jobs:
+  cypress-run:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Cache Node modules
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/Cypress
+            node_modules
+            cypress-tests/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install Cypress in cypress-tests
+        run: |
+          cd cypress-tests
+          npm ci --legacy-peer-deps
+
+      - name: Install Next.js project and dependencies
+        run: |
+          npm ci
+
+      - name: Build Next.js app
+        run: |
+          npm run build
+
+      - name: Start Next.js app
+        run: |
+          npm run start -- --port 8080 &
+
+      - name: Run Cypress tests
+        run: |
+          cd cypress-tests
+          npm run test
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cypress-screenshots
+          path: cypress-tests/cypress/screenshots
+          if-no-files-found: ignore
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cypress-videos
+          path: cypress-tests/cypress/videos
+          if-no-files-found: ignore

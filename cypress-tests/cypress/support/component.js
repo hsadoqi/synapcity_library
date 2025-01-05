@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-namespace */
 // ***********************************************************
-// This example support/e2e.ts is processed and
+// This example support/component.js is processed and
 // loaded automatically before your test files.
 //
 // This is a great place to put global configuration and
@@ -15,17 +14,11 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
+import "./commands";
 
-import { mount } from 'cypress/react18'
-import '../../src/styles/globals.css'
+import { mount } from "cypress/react18";
 
-declare global {
-    namespace Cypress {
-        interface Chainable {
-            mount: typeof mount
-        }
-    }
-}
+Cypress.Commands.add("mount", mount);
 
-Cypress.Commands.add('mount', mount)
+// Example use:
+// cy.mount(<MyComponent />)
