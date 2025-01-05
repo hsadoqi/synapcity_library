@@ -1,6 +1,6 @@
 name: Chromatic Deployment
 on:
-  push:
+  pull-request:
     branches:
       - main
       - testing/*
