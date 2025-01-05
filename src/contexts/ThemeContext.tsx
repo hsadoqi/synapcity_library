@@ -1,21 +1,32 @@
 'use client'
 
+import { ThemeType } from '@/components/theming/ThemeToggle/__tests__/utils/renderWithThemeContext'
 import { Loader } from 'lucide-react'
 import { createContext, useEffect, useState } from 'react'
 
-interface ThemeProps {
-    theme?: string
-    setTheme: (value: string) => void
+export interface ThemeProps {
+    theme?: ThemeType | string
+    setTheme: (value: ThemeType | string) => void
 }
 
-const ThemeContext = createContext<ThemeProps | undefined>(undefined)
+const ThemeContext = createContext<ThemeProps | string | undefined>(undefined)
 
-function ThemeProvider({ children }: { children: React.ReactNode }) {
-    const [theme, setTheme] = useState<string | undefined>(undefined)
+function ThemeProvider({
+    initialTheme,
+    children,
+}: {
+    initialTheme?: ThemeType | string | undefined
+    children: React.ReactNode
+}) {
+    const [theme, setTheme] = useState<ThemeType | string | undefined>(
+        initialTheme || 'light',
+    )
     const [isThemeLoaded, setIsThemeLoaded] = useState(false)
 
     useEffect(() => {
-        const savedTheme = localStorage.getItem('theme')
+        const savedTheme =
+            initialTheme ||
+            (localStorage.getItem('theme') as unknown as ThemeType)
         if (savedTheme) {
             setTheme(savedTheme)
         } else {
@@ -25,7 +36,7 @@ function ThemeProvider({ children }: { children: React.ReactNode }) {
             setTheme(systemTheme ? 'dark' : 'light')
         }
         setIsThemeLoaded(true)
-    }, [])
+    }, [initialTheme])
 
     useEffect(() => {
         if (!theme || !isThemeLoaded) return
@@ -35,7 +46,9 @@ function ThemeProvider({ children }: { children: React.ReactNode }) {
         } else {
             htmlClassList.remove('dark')
         }
-        localStorage.setItem('theme', theme)
+        if (typeof window !== 'undefined' && window.localStorage) {
+            localStorage.setItem('theme', theme as string)
+        }
     }, [theme, isThemeLoaded])
 
     if (!isThemeLoaded) {

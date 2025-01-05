@@ -1,30 +1,35 @@
-'use client'
-
 import { Button } from '@/components/ui/button'
-import { ThemeContext } from '@/contexts'
+import { clsx } from 'clsx'
 import { SunIcon, MoonIcon } from 'lucide-react'
-import { useContext } from 'react'
 
-export function ThemeToggle() {
-    const context = useContext(ThemeContext)
-
-    if (!context) {
-        return null
+export function ThemeToggle({
+    isDarkMode,
+    toggleDarkMode,
+}: {
+    isDarkMode?: boolean
+    toggleDarkMode?: () => void
+}) {
+    const handleTheme = () => {
+        if (toggleDarkMode) {
+            toggleDarkMode()
+        }
     }
 
-    const { theme, setTheme } = context
-
-    const toggleTheme = () => {
-        setTheme(theme === 'dark' ? 'light' : 'dark')
+    if (!toggleDarkMode) {
+        return null
     }
 
     return (
         <Button
             variant="outline"
-            onClick={toggleTheme}
+            onClick={handleTheme}
             data-testid="theme-toggle"
+            className={clsx({
+                'bg-gray-950 text-white': !isDarkMode,
+                'bg-white text-gray-950': isDarkMode,
+            })}
         >
-            {theme === 'dark' ? (
+            {isDarkMode ? (
                 <SunIcon data-testid="sun-icon" />
             ) : (
                 <MoonIcon data-testid="moon-icon" />
