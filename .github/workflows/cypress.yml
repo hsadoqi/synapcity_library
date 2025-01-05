@@ -35,6 +35,15 @@ jobs:
       - name: Install Next.js project and dependencies
         run: |
           npm ci
+
+      - name: Build Next.js app
+        run: |
+          npm run build
+
+      - name: Start Next.js app
+        run: |
+          npm run start -- --port 8080 &
+
       - name: Run Cypress tests
         run: |
           cd cypress-tests

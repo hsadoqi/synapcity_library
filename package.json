@@ -15,7 +15,7 @@
         "jest": "jest",
         "jest:watch": "jest --watch",
         "cypress": "npm run test --prefix ./cypress-tests",
-        "playwright": "npx playwright test",
+        "playwright": "npm run start & npx playwright test",
         "playwright:ui": "npx playwright test --ui",
         "playwright:debug": "npx playwright test --debug",
         "playwright:gen": "npx playwright codegen",
