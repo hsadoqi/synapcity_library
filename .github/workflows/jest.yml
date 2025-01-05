@@ -1,8 +1,11 @@
-name: Run Tests
+name: Jest Tests
 on:
   pull_request:
     branches:
       - main
+      - testing/*
+      - release/*
+      - features/*
 jobs:
   jest-run:
     runs-on: ubuntu-24.04
