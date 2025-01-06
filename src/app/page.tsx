@@ -1,7 +1,7 @@
 export default function Home() {
     return (
-        <>
-            <div className="full-screen-container">Home Page</div>
-        </>
+        <div className="full-screen-container">
+            <h1>Home Page</h1>
+        </div>
     )
 }
