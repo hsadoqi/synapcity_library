@@ -13,7 +13,7 @@ export default function MainContainer({
             <Header />
             <div className={styles.mainContainer}>
                 <div
-                    className={clsx(styles.scrollYContainer, 'max-w-7xl py-20')}
+                    className={clsx(styles.scrollYContainer, 'max-w-7xl py-16')}
                 >
                     {children}
                 </div>
