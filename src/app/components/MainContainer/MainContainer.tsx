@@ -9,11 +9,11 @@ export default function MainContainer({
     children: React.ReactNode
 }) {
     return (
-        <div className="full-screen-container">
+        <div className="full-screen-container mb-4">
             <Header />
             <div className={styles.mainContainer}>
                 <div
-                    className={clsx(styles.scrollYContainer, 'max-w-7xl py-16')}
+                    className={clsx(styles.scrollYContainer, 'max-w-7xl pt-16')}
                 >
                     {children}
                 </div>
