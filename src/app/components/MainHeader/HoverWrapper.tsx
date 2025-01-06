@@ -1,5 +1,8 @@
 'use client'
 
+import { useContext } from 'react'
+import { ThemeContext } from '@/contexts'
+import { useUIStore } from '@/providers/ui-store-provider'
 import { useState } from 'react'
 import styles from './MainHeader.module.css'
 import clsx from 'clsx'
@@ -13,6 +16,16 @@ export default function HoverWrapper({
     const [leaveTimeout, setLeaveTimeout] = useState<NodeJS.Timeout | null>(
         null,
     )
+    const { isHeaderVisible: isMainHeaderVisible } = useUIStore(
+        (state) => state,
+    )
+    const context = useContext(ThemeContext)
+
+    if (!context) {
+        return null
+    }
+
+    const { theme } = context
 
     const handleMouseEnter = () => {
         if (leaveTimeout) {
@@ -37,8 +50,9 @@ export default function HoverWrapper({
         >
             <div
                 className={clsx(styles.header, {
-                    [styles.visible]: isVisible,
-                    [styles.hidden]: !isVisible,
+                    'bg-gray-950': theme === 'dark',
+                    [styles.visible]: isMainHeaderVisible || isVisible,
+                    [styles.hidden]: !isVisible && !isMainHeaderVisible,
                 })}
             >
                 {children}

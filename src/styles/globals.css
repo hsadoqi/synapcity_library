@@ -30,15 +30,10 @@ body.no-scroll {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
-        @apply border border-black dark:border-white;
     }
 
     body {
         @apply bg-background text-foreground;
-    }
-
-    :root {
-        --container-max-width: 1200px;
     }
 }
 

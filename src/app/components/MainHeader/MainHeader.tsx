@@ -7,7 +7,7 @@ export default function MainHeader() {
     return (
         <header className={clsx(styles.headerContainer)}>
             <HoverWrapper>
-                <nav className="w-full h-full flex justify-between items-center px-4 shadow-sm hover:shadow-md dark:shadow-gray-300 shadow-gray-950">
+                <nav className="w-full h-full flex justify-between items-center px-4 shadow-sm hover:shadow-md shadow-gray-200 dark:shadow-gray-800">
                     Navbar
                     <ThemeWrapper />
                 </nav>
