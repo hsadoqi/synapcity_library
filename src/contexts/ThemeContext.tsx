@@ -9,8 +9,7 @@ export interface ThemeProps {
     setTheme: (value: ThemeType | string) => void
 }
 
-const ThemeContext = createContext<ThemeProps | string | undefined>(undefined)
-
+const ThemeContext = createContext<ThemeProps | undefined>(undefined)
 function ThemeProvider({
     initialTheme,
     children,

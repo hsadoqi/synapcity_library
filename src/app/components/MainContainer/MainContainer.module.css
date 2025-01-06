@@ -1,0 +1,14 @@
+.mainContainer {
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.scrollYContainer {
+    max-height: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    margin: 0 auto;
+}

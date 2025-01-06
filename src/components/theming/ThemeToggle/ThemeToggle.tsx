@@ -5,19 +5,24 @@ import { SunIcon, MoonIcon } from 'lucide-react'
 export function ThemeToggle({
     isDarkMode,
     toggleDarkMode,
+    className,
 }: {
     isDarkMode?: boolean
     toggleDarkMode?: () => void
+    className?: string
 }) {
     return (
         <Button
             variant="outline"
             onClick={toggleDarkMode}
             data-testid="theme-toggle"
-            className={clsx({
-                'bg-gray-950 text-white': !isDarkMode,
-                'bg-white text-gray-950': isDarkMode,
-            })}
+            className={clsx(
+                {
+                    'bg-gray-950 text-white': !isDarkMode,
+                    'bg-white text-gray-950': isDarkMode,
+                },
+                className,
+            )}
         >
             {isDarkMode ? (
                 <SunIcon data-testid="sun-icon" />

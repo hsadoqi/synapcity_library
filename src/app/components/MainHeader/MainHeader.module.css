@@ -1,0 +1,34 @@
+.hoverableContainer {
+    min-height: 128px;
+    width: 100%;
+    background: transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 20;
+}
+
+.header {
+    border-bottom: 1px solid white;
+    height: 64px;
+    z-index: 30;
+    position: relative;
+    opacity: 0;
+    transform: translateY(-100%);
+    transition:
+        transform 0.5s ease-in-out,
+        opacity 0.5s linear;
+    transition-delay: 500ms;
+}
+
+.headerContainer {
+    z-index: 0;
+    width: 100%;
+    position: relative;
+}
+
+.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 150ms;
+}

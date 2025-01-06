@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
-import { ThemeToggle } from '@/components'
 import Providers from './providers'
-import '@/styles/shadcn-ui.css'
+import { MainContainer as Container } from './components'
 import '@/styles/variables.css'
+import '@/styles/shadcn-ui.css'
 import '@/styles/globals.css'
 
 const geistSans = Geist({
@@ -29,11 +29,10 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body
-                className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+                className={`${geistSans.variable} ${geistMono.variable} antialiased relative`}
             >
                 <Providers>
-                    <ThemeToggle />
-                    {children}
+                    <Container>{children}</Container>
                 </Providers>
             </body>
         </html>
