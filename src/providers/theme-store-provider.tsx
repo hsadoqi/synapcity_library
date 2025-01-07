@@ -8,7 +8,7 @@ import {
     useState,
 } from 'react'
 import { useThemeStore } from '@/stores/theme-store'
-import { Loader } from 'lucide-react'
+import { LoadingSpinner } from '@/components'
 
 export interface ThemeProps {
     isDarkMode: boolean
@@ -43,11 +43,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     }, [isDarkMode, isThemeLoaded])
 
     if (!isThemeLoaded) {
-        return (
-            <div className="z-50 bg-black text-white h-full w-full flex justify-center items-center">
-                <Loader className="animate-spin" size={48} />
-            </div>
-        )
+        return <LoadingSpinner size="xl" />
     }
 
     return (
