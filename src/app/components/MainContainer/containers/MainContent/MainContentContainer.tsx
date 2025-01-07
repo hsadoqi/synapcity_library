@@ -5,7 +5,7 @@ import { MainHeaderPanel } from '../../../MainHeader/containers'
 import { useTabStore } from '@/stores/tab-store'
 import { useRef, useEffect, Suspense } from 'react'
 
-export default function MainContent({
+export default function MainContentContainer({
     children,
 }: {
     children: React.ReactNode

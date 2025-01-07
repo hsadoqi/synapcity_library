@@ -1,6 +1,6 @@
 'use client'
 
-import MainContent from './containers/MainContent/MainContent'
+import MainContentContainer from './containers/MainContent/MainContentContainer'
 import { MainHeader as Header } from '../MainHeader'
 import { TabWrapper } from './containers'
 
@@ -13,7 +13,7 @@ export default function MainContainer({
         <div className="full-screen-container overflow-hidden">
             <TabWrapper>
                 <Header />
-                <MainContent>{children}</MainContent>
+                <MainContentContainer>{children}</MainContentContainer>
             </TabWrapper>
         </div>
     )

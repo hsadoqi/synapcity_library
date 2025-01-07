@@ -1,3 +1,3 @@
 export * from './MainContainer'
 export * from './MainHeader'
-export * from './MainContainer/containers/MainContent/containers/MainHeaderPanel'
+export * from './MainContainer/containers/MainHeaderPanel'
