@@ -1,4 +1,4 @@
-import { createStore } from 'zustand'
+import { createStore, useStore } from 'zustand'
 
 export type TabState = {
     isPanelVisible: boolean
@@ -13,24 +13,17 @@ export type TabActions = {
 
 export type TabStore = TabState & TabActions
 
-export const initTabStore = (): TabState => {
-    return {
-        isPanelVisible: false,
-        activeTab: null,
-    }
-}
-
-export const defaultInitState: TabState = {
+export const initTabStore = (): TabState => ({
     isPanelVisible: false,
     activeTab: null,
-}
+})
 
-export const createTabStore = (initState: TabState = defaultInitState) => {
-    return createStore<TabStore>()((set) => ({
+export const createTabStore = (initState: TabState = initTabStore()) => {
+    return createStore<TabStore>((set) => ({
         ...initState,
         togglePanel: (open) =>
             set((state) => ({
-                isPanelVisible: open || !state.isPanelVisible,
+                isPanelVisible: open ?? !state.isPanelVisible,
             })),
         openActiveTab: (tab) =>
             set(() => ({
@@ -41,4 +34,10 @@ export const createTabStore = (initState: TabState = defaultInitState) => {
                 activeTab: tab,
             })),
     }))
+}
+
+const tabStore = createTabStore(initTabStore())
+
+export const useTabStore = () => {
+    return useStore(tabStore)
 }

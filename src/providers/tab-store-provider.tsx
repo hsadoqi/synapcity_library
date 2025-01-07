@@ -1,9 +1,8 @@
 'use client'
 
-import { type ReactNode, createContext, useRef, useContext } from 'react'
-import { useStore } from 'zustand'
+import { type ReactNode, createContext, useRef } from 'react'
 
-import { type TabStore, createTabStore, initTabStore } from '@/stores/tab-store'
+import { createTabStore, initTabStore } from '@/stores/tab-store'
 
 export type TabStoreApi = ReturnType<typeof createTabStore>
 
@@ -25,16 +24,4 @@ export const TabStoreProvider = ({ children }: TabStoreProviderProps) => {
             {children}
         </TabStoreContext.Provider>
     )
-}
-
-export const useTabStore = <T,>(selector: (store: TabStore) => T): T => {
-    const tabStoreContext = useContext(TabStoreContext)
-
-    if (!tabStoreContext) {
-        throw new Error(
-            `useCounterStore must be used within CounterStoreProvider`,
-        )
-    }
-
-    return useStore(tabStoreContext, selector)
 }
