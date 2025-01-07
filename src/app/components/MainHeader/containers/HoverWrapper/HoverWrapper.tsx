@@ -1,7 +1,7 @@
 'use client'
 
+import { useUIStore } from '@/providers/ui-store-provider'
 import { useState } from 'react'
-import styles from './MainHeader.module.css'
 import clsx from 'clsx'
 
 export default function HoverWrapper({
@@ -13,6 +13,7 @@ export default function HoverWrapper({
     const [leaveTimeout, setLeaveTimeout] = useState<NodeJS.Timeout | null>(
         null,
     )
+    const { isHeaderLocked } = useUIStore((state) => state)
 
     const handleMouseEnter = () => {
         if (leaveTimeout) {
@@ -31,14 +32,13 @@ export default function HoverWrapper({
 
     return (
         <div
-            className={clsx(styles.hoverableContainer, 'group')}
+            className={clsx('hoverable-container h-full group')}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
             <div
-                className={clsx(styles.header, {
-                    [styles.visible]: isVisible,
-                    [styles.hidden]: !isVisible,
+                className={clsx('header', {
+                    visible: isHeaderLocked || isVisible,
                 })}
             >
                 {children}
