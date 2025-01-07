@@ -1,31 +1,22 @@
 'use client'
 
-import { useContext } from 'react'
-import { ThemeContext } from '@/contexts'
 import { useUIStore } from '@/providers/ui-store-provider'
 import { useState } from 'react'
 import styles from './MainHeader.module.css'
 import clsx from 'clsx'
+import { useThemeStore } from '@/stores/theme-store'
 
 export default function HoverWrapper({
     children,
 }: {
     children: React.ReactNode
 }) {
+    const { isDarkMode } = useThemeStore()
     const [isVisible, setIsVisible] = useState(false)
     const [leaveTimeout, setLeaveTimeout] = useState<NodeJS.Timeout | null>(
         null,
     )
-    const { isHeaderVisible: isMainHeaderVisible } = useUIStore(
-        (state) => state,
-    )
-    const context = useContext(ThemeContext)
-
-    if (!context) {
-        return null
-    }
-
-    const { theme } = context
+    const { isHeaderLocked } = useUIStore((state) => state)
 
     const handleMouseEnter = () => {
         if (leaveTimeout) {
@@ -44,15 +35,15 @@ export default function HoverWrapper({
 
     return (
         <div
-            className={clsx(styles.hoverableContainer, 'group')}
+            className={clsx(styles.hoverableContainer, 'h-full group')}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
             <div
                 className={clsx(styles.header, {
-                    'bg-gray-950': theme === 'dark',
-                    [styles.visible]: isMainHeaderVisible || isVisible,
-                    [styles.hidden]: !isVisible && !isMainHeaderVisible,
+                    'bg-gray-950': isDarkMode,
+                    [styles.visible]: isHeaderLocked || isVisible,
+                    [styles.hidden]: !isHeaderLocked && !isVisible,
                 })}
             >
                 {children}

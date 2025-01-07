@@ -1,0 +1,18 @@
+.panel {
+    position: relative;
+    opacity: 0;
+    transform: translateY(-100%);
+    transition:
+        transform 5s ease-in,
+        opacity 5s linear;
+    transition-delay: 500ms;
+}
+
+.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition:
+        transform 5s ease-in,
+        opacity 5s linear;
+    transition-delay: 300ms;
+}
