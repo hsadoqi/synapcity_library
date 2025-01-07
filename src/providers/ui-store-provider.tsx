@@ -31,9 +31,7 @@ export const useUIStore = <T,>(selector: (store: UIStore) => T): T => {
     const uiStoreContext = useContext(UIStoreContext)
 
     if (!uiStoreContext) {
-        throw new Error(
-            `useCounterStore must be used within CounterStoreProvider`,
-        )
+        throw new Error(`useUIStore must be used within UIStoreProvider`)
     }
 
     return useStore(uiStoreContext, selector)
