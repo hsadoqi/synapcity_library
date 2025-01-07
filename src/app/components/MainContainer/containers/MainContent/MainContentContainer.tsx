@@ -48,7 +48,7 @@ export default function MainContentContainer({
                     <div
                         ref={mainContainerRef}
                         className={clsx(
-                            'shadow-md hover:shadow-lg border-2 scroll-y-container',
+                            'shadow-md hover:shadow-lg scroll-y-container',
                         )}
                     >
                         {children}

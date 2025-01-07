@@ -1,5 +1,3 @@
-'use client'
-
 import { Button } from '@/components'
 import {
     DropdownMenu,
@@ -8,36 +6,62 @@ import {
     DropdownMenuItem,
 } from '@/components/ui/dropdown-menu'
 import { LucideMenu as HamburgerMenu } from 'lucide-react'
-import Link from 'next/link'
+import NavigationItem from '../../components/NavigationItem/NavigationItem'
 
+const data = [
+    {
+        link: 'Library',
+        href: '/libraries',
+    },
+    {
+        link: 'Projects',
+        href: '/projects',
+    },
+    {
+        link: 'Areas',
+        href: '/areas',
+    },
+    {
+        link: 'Resources',
+        href: '/resources',
+    },
+    {
+        link: 'Archives',
+        href: '/archives',
+    },
+]
 export default function MainNavigationMenu() {
     return (
         <>
-            <div className="hidden md:flex md:flex-1 transition-all opacity-0 md:opacity-100 duration-300 ease-in-out items-center">
-                <nav className="flex items-center justify-evenly gap-16 mx-auto">
-                    <Link href="/libraries">Library</Link>
-                    <Link href="/projects">Projects</Link>
-                    <Link href="/areas">Areas</Link>
-                    <Link href="/resources">Resources</Link>
-                    <Link href="/archives">Archives</Link>
-                    <div className="md:hidden flex">
-                        <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                                <Button size="icon">
-                                    <HamburgerMenu />
-                                </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent className="w-[--radix-popper-anchor-width]">
-                                <DropdownMenuItem>
-                                    <Link href="/">Home</Link>
-                                </DropdownMenuItem>
-                                <DropdownMenuItem>
-                                    <Link href="/projects">Projects</Link>
-                                </DropdownMenuItem>
-                            </DropdownMenuContent>
-                        </DropdownMenu>
-                    </div>
-                </nav>
+            <div className="flex-1 w-0 lg:w-full -translate-y-full lg:translate-y-0 opacity-0 lg:opacity-100">
+                <div className="flex items-center justify-evenly gap-8 w-1/2 mx-auto">
+                    {data.map((item, index) => (
+                        <NavigationItem
+                            key={`nav-item-${index}`}
+                            link={item.link}
+                            href={item.href}
+                        />
+                    ))}
+                </div>
+            </div>
+            <div className="lg:hidden flex gap-3">
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button size="icon">
+                            <HamburgerMenu />
+                        </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent className="w-[--radix-popper-anchor-width]">
+                        <DropdownMenuItem>
+                            <NavigationItem link="Home" href="/" />
+                        </DropdownMenuItem>
+                        {data.map((item, index) => (
+                            <DropdownMenuItem key={`dropdown-${index}`}>
+                                <NavigationItem {...item} />
+                            </DropdownMenuItem>
+                        ))}
+                    </DropdownMenuContent>
+                </DropdownMenu>
             </div>
         </>
     )

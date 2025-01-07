@@ -19,7 +19,7 @@ export default function PanelButton() {
     return (
         <Button
             size="icon"
-            variant={isPanelVisible ? 'default' : 'ghost'}
+            variant={isPanelVisible ? 'inner' : 'ghost'}
             onClick={() => handlePanelVisibility()}
         >
             {isPanelVisible ? <PanelBottomOpen /> : <PanelBottomClose />}
