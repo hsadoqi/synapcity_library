@@ -1,7 +1,7 @@
 'use client'
 
-import ThemeSwitch from '@/components/ThemeSwitch/ThemeSwitch'
+import { ThemeToggle } from '../ThemeToggle'
 
 export default function ThemeWrapper() {
-    return <ThemeSwitch />
+    return <ThemeToggle />
 }

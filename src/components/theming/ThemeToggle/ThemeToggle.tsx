@@ -1,34 +1,26 @@
-import { Button } from '@/components/ui/button'
-import { clsx } from 'clsx'
+'use client'
+
+import { Button } from '@/components/ui'
+import { useThemeStore } from '@/stores/theme-store'
 import { SunIcon, MoonIcon } from 'lucide-react'
 
-export function ThemeToggle({
-    isDarkMode,
-    toggleDarkMode,
-    className,
-}: {
-    isDarkMode?: boolean
-    toggleDarkMode?: () => void
-    className?: string
-}) {
+export function ThemeToggle() {
+    const { toggleDarkMode } = useThemeStore()
     return (
         <Button
-            variant="outline"
-            onClick={toggleDarkMode}
-            data-testid="theme-toggle"
-            className={clsx(
-                {
-                    'bg-gray-950 text-white': !isDarkMode,
-                    'bg-white text-gray-950': isDarkMode,
-                },
-                className,
-            )}
+            variant="ghost"
+            onClick={() => toggleDarkMode()}
+            className="h-8 w-8 px-0"
         >
-            {isDarkMode ? (
-                <SunIcon data-testid="sun-icon" />
-            ) : (
-                <MoonIcon data-testid="moon-icon" />
-            )}
+            <MoonIcon
+                aria-label="Toggle dark"
+                className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
+            />
+            <SunIcon
+                aria-label="Toggle light"
+                className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
+            />
+            <span className="sr-only">Toggle theme</span>
         </Button>
     )
 }
