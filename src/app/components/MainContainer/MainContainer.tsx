@@ -1,21 +1,18 @@
 'use client'
-import styles from './MainContainer.module.css'
 
+import { MainHeaderPanel } from '../MainHeader/MainHeaderPanel'
 import { MainHeader as Header } from '../MainHeader'
+import styles from './MainContainer.module.css'
+import '@/styles/globals.css'
 import clsx from 'clsx'
-import { useContext } from 'react'
-import { ThemeContext } from '@/contexts'
+import { useThemeStore } from '@/stores/theme-store'
 
 export default function MainContainer({
     children,
 }: {
     children: React.ReactNode
 }) {
-    const context = useContext(ThemeContext)
-    if (!context) return null
-
-    const { theme } = context
-    const isDarkMode = theme === 'dark'
+    const { isDarkMode } = useThemeStore()
     return (
         <div className="full-screen-container">
             <Header />
@@ -26,24 +23,24 @@ export default function MainContainer({
             >
                 <div
                     className={clsx(
-                        styles.scrollYContainer,
+                        styles.mainContainer,
                         {
                             'bg-gray-950': isDarkMode,
                         },
-                        'pt-16 shadow-md hover:shadow-lg',
+                        'p-0 shadow-md hover:shadow-lg h-[calc(80vh',
                     )}
                 >
-                    {children}
-                    <div className="h-96 min-h-96" />
-                    <div className="h-96 min-h-96" />
-                    <div className="h-96 min-h-96" />
-                    <div className="h-96 min-h-96" />
-                    <div className="h-96 min-h-96" />
-                    <div className="h-96 min-h-96" />
-                    <div className="h-96 min-h-96" />
-                    <div className="h-96 min-h-96" />
-                    <div className="h-96 min-h-96" />
-                    <div className="h-96 min-h-96" />
+                    <MainHeaderPanel />
+                    <div
+                        className={clsx(
+                            {
+                                'bg-gray-950': isDarkMode,
+                            },
+                            'shadow-md hover:shadow-lg border-2 scroll-y-container',
+                        )}
+                    >
+                        {children}
+                    </div>
                 </div>
             </div>
         </div>
