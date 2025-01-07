@@ -21,7 +21,7 @@ export default function TabItem({
     return (
         <Button
             size={icon ? 'icon' : 'default'}
-            variant={activeTab === tab && isPanelVisible ? 'default' : 'ghost'}
+            variant={activeTab === tab && isPanelVisible ? 'inner' : 'ghost'}
             onClick={() => handleTabClick(tab)}
         >
             {children}

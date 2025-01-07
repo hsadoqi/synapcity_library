@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState, useEffect } from 'react'
 
 const Clock = () => {
@@ -22,7 +24,7 @@ const Clock = () => {
 
     return (
         <div className="py-1 px-3 rounded-md shadow-inner hover:shadow-none hover:cursor-pointer shadow-gray-300 dark:shadow-gray-800 border">
-            <h2>Current Time: {currentTime}</h2>
+            <p>Current Time: {currentTime}</p>
         </div>
     )
 }
