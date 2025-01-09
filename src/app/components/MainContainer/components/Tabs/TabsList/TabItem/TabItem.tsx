@@ -23,6 +23,7 @@ export default function TabItem({
             size={icon ? 'icon' : 'default'}
             variant={activeTab === tab && isPanelVisible ? 'inner' : 'ghost'}
             onClick={() => handleTabClick(tab)}
+            className="rounded-none"
         >
             {children}
         </Button>
