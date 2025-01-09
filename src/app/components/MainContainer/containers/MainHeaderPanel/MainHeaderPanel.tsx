@@ -12,18 +12,14 @@ export default function MainHeaderPanel() {
     return (
         <div
             className={clsx('shadow-sm', {
-                'visible-panel h-full md:h-1/2 transition-all duration-1000 delay-300':
-                    isPanelVisible,
-                'hidden-panel transition-all duration-1000 delay-300':
-                    !isPanelVisible,
+                'visible-panel h-full md:h-1/2': isPanelVisible,
+                'hidden-panel': !isPanelVisible,
             })}
         >
             <div
                 className={clsx({
-                    'visible-panel transition-all duration-1000 delay-300':
-                        isPanelVisible,
-                    'hidden-panel transition-all duration-1000 delay-300':
-                        !isPanelVisible,
+                    'visible-panel': isPanelVisible,
+                    'hidden-panel': !isPanelVisible,
                 })}
             >
                 <div className="overflow-hidden w-[calc(100vw)] rounded px-8 py-2">
