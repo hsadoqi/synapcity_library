@@ -1,6 +1,6 @@
 'use client'
 
-import { useUIStore } from '@/providers/ui-store-provider'
+import { useHeaderStore } from '@/stores/header-store'
 import { useState } from 'react'
 import clsx from 'clsx'
 
@@ -9,40 +9,50 @@ export default function HoverWrapper({
 }: {
     children: React.ReactNode
 }) {
-    const [isVisible, setIsVisible] = useState(false)
     const [leaveTimeout, setLeaveTimeout] = useState<NodeJS.Timeout | null>(
         null,
     )
-    const { isHeaderLocked } = useUIStore((state) => state)
+
+    const { setIsHovered, isLocked, isVisible, setIsVisible } = useHeaderStore()
 
     const handleMouseEnter = () => {
         if (leaveTimeout) {
             clearTimeout(leaveTimeout)
             setLeaveTimeout(null)
         }
-        setIsVisible(true)
+        setIsHovered(true)
     }
 
     const handleMouseLeave = () => {
         const timeout = setTimeout(() => {
-            setIsVisible(false)
-        }, 500)
+            if (!isLocked) {
+                setIsVisible(false)
+            }
+            setIsHovered(false)
+        }, 1000)
         setLeaveTimeout(timeout)
     }
 
     return (
-        <div
-            className={clsx('hoverable-container h-full group')}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-        >
+        <>
+            <div
+                className={clsx('hoverable-container h-full group', {
+                    'w-full': isLocked,
+                    'w-3/4': !isLocked,
+                })}
+                onMouseEnter={handleMouseEnter}
+            />
             <div
                 className={clsx('header', {
-                    visible: isHeaderLocked || isVisible,
+                    'visible-header transition-all duration-1000 delay-300 ease-linear':
+                        isVisible || isLocked,
+                    'invisible-header': !isVisible && !isLocked,
                 })}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
             >
                 {children}
             </div>
-        </div>
+        </>
     )
 }

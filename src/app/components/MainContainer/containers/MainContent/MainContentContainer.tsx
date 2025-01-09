@@ -4,6 +4,7 @@ import clsx from 'clsx'
 import { MainHeaderPanel } from '../../../MainHeader/containers'
 import { useTabStore } from '@/stores/tab-store'
 import { useRef, useEffect, Suspense } from 'react'
+import { useHeaderStore } from '@/stores/header-store'
 
 export default function MainContentContainer({
     children,
@@ -11,6 +12,7 @@ export default function MainContentContainer({
     children: React.ReactNode
 }) {
     const { togglePanel, isPanelVisible } = useTabStore()
+    const { isVisible } = useHeaderStore()
     const mainContainerRef = useRef<HTMLDivElement | null>(null)
 
     useEffect(() => {
@@ -36,11 +38,15 @@ export default function MainContentContainer({
     }, [isPanelVisible, togglePanel])
 
     return (
-        <div className={'main-container'}>
+        <div
+            className={clsx('main-container', {
+                'pt-0': !isVisible,
+                'pt-16': isVisible,
+            })}
+        >
             <div
                 className={clsx(
-                    'main-container',
-                    'p-0 shadow-md hover:shadow-lg',
+                    'main-container p-0 shadow-md hover:shadow-lg border-t',
                 )}
             >
                 <MainHeaderPanel />
@@ -48,7 +54,7 @@ export default function MainContentContainer({
                     <div
                         ref={mainContainerRef}
                         className={clsx(
-                            'shadow-md hover:shadow-lg scroll-y-container',
+                            'shadow-md hover:shadow-lg scroll-y-container relative',
                         )}
                     >
                         {children}

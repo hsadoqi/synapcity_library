@@ -2,7 +2,6 @@
 
 import clsx from 'clsx'
 import Link, { LinkProps } from 'next/link'
-import { usePathname } from 'next/navigation'
 import { buttonVariants } from '@/components'
 import { VariantProps } from 'class-variance-authority'
 import { Slot } from '@radix-ui/react-slot'
@@ -25,8 +24,6 @@ export default function LinkButton({
     asChild = false,
     ...props
 }: LinkButtonProps) {
-    const pathname = usePathname()
-    console.log(pathname, href, pathname === href)
     const Comp = asChild ? Slot : Link
     return (
         <Comp

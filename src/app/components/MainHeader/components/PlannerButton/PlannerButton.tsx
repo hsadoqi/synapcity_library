@@ -2,16 +2,16 @@
 
 import { Button } from '@/components'
 import { useTabStore } from '@/stores/tab-store'
-import { PanelBottomOpen, PanelBottomClose } from 'lucide-react'
+import { LucideCalendarClock as Clock } from 'lucide-react'
 
-export default function PanelButton() {
+export default function PlannerButton() {
     const { isPanelVisible, openActiveTab, togglePanel, setActiveTab } =
         useTabStore()
 
     const handlePanelVisibility = () => {
         togglePanel()
         if (!isPanelVisible) {
-            openActiveTab('date')
+            openActiveTab('today')
         } else {
             setActiveTab(null)
         }
@@ -21,8 +21,13 @@ export default function PanelButton() {
             size="icon"
             variant={isPanelVisible ? 'inner' : 'ghost'}
             onClick={() => handlePanelVisibility()}
+            className={
+                isPanelVisible
+                    ? 'bg-gray-950 text-white dark:bg-white dark:text-gray-950'
+                    : 'bg-transparent'
+            }
         >
-            {isPanelVisible ? <PanelBottomOpen /> : <PanelBottomClose />}
+            <Clock />
         </Button>
     )
 }
