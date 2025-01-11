@@ -7,11 +7,9 @@ export default function NoteContainer({
     children: React.ReactNode
 }) {
     return (
-        // <div className="flex">
         <SidebarProvider>
             <SidebarInset>{children}</SidebarInset>
             <NoteSidebar side="right" />
         </SidebarProvider>
-        // </div>
     )
 }

@@ -39,28 +39,25 @@ export default function MainContentContainer({
 
     return (
         <div
-            className={clsx('main-container', {
-                'pt-0': !isVisible,
-                'pt-16': isVisible,
-            })}
+            className={clsx(
+                'main-container flex flex-col h-full w-full relative',
+                {
+                    'pt-0 delay-300': !isVisible,
+                    'pt-12': isVisible,
+                },
+            )}
         >
-            <div
-                className={clsx(
-                    'main-container p-0 shadow-md hover:shadow-lg border-t',
-                )}
-            >
-                <MainHeaderPanel />
-                <Suspense fallback={<div>Loading...</div>}>
-                    <div
-                        ref={mainContainerRef}
-                        className={clsx(
-                            'shadow-md hover:shadow-lg scroll-y-container relative',
-                        )}
-                    >
-                        {children}
-                    </div>
-                </Suspense>
-            </div>
+            <MainHeaderPanel />
+            <Suspense fallback={<div>Loading...</div>}>
+                <div
+                    ref={mainContainerRef}
+                    className={clsx(
+                        'shadow-md hover:shadow-lg scroll-y-container relative flex flex-col flex-1 w-full h-full',
+                    )}
+                >
+                    {children}
+                </div>
+            </Suspense>
         </div>
     )
 }

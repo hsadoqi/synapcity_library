@@ -38,21 +38,23 @@ export default function HoverWrapper({
             <div
                 className={clsx('hoverable-container h-full group', {
                     'w-full': isLocked,
-                    'w-3/4': !isLocked,
+                    'w-1/2 mx-auto': !isLocked,
                 })}
                 onMouseEnter={handleMouseEnter}
             />
-            <div
-                className={clsx('header', {
-                    'visible-header transition-all duration-1000 delay-300 ease-linear':
-                        isVisible || isLocked,
-                    'invisible-header': !isVisible && !isLocked,
-                })}
+            <nav
+                className={clsx(
+                    'header w-full h-full flex justify-between items-center pr-2 md:px-4 shadow-sm',
+                    {
+                        'visible-header': isVisible || isLocked,
+                        'invisible-header': !isVisible && !isLocked,
+                    },
+                )}
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
             >
                 {children}
-            </div>
+            </nav>
         </>
     )
 }
