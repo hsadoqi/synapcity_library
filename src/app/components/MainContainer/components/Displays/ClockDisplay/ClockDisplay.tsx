@@ -3,10 +3,39 @@
 import { useUIStore } from '@/stores/ui-store'
 import clsx from 'clsx'
 import { Clock } from '@/components'
+import { useState, useEffect } from 'react'
 
 export default function ClockDisplay() {
     const { isClockVisible } = useUIStore()
+    const [showDate, setShowDate] = useState(false)
     const activeDate = new Date().toDateString()
+
+    useEffect(() => {
+        let timeout: NodeJS.Timeout | undefined
+
+        if (showDate) {
+            timeout = setTimeout(() => {
+                setShowDate(false)
+            }, 2000)
+        }
+
+        return () => {
+            if (timeout) {
+                clearTimeout(timeout)
+            }
+        }
+    }, [showDate])
+
+    const toggleDate = () => {
+        if (isClockVisible) {
+            if (!showDate) {
+                setShowDate(true)
+            } else {
+                setShowDate(false)
+            }
+        }
+    }
+
     return (
         <div
             className={clsx(
@@ -17,10 +46,20 @@ export default function ClockDisplay() {
                 },
             )}
         >
-            <h4 className="text-sm sm:text-base md:text-lg font-bold">
-                {activeDate}
-            </h4>
-            <Clock />
+            {showDate && (
+                <h4
+                    className={clsx(
+                        'text-sm sm:text-base md:text-lg font-bold',
+                        {
+                            visible: showDate,
+                            'invisible md:visible': !showDate,
+                        },
+                    )}
+                >
+                    {activeDate}
+                </h4>
+            )}
+            <Clock onClick={toggleDate} />
         </div>
     )
 }

@@ -10,28 +10,33 @@ export interface LinkButtonProps
     extends LinkProps,
         VariantProps<typeof buttonVariants> {
     asChild?: boolean
-    link: string
-    href: string
+    label: string
+    children?: React.ReactNode
+    slug?: string
     className?: string
+    onClick?: () => void
+    isActive?: boolean
 }
 
 export default function LinkButton({
-    link,
-    href,
+    label,
     variant = 'link',
+    children,
     size = 'default',
     className = '',
     asChild = false,
+    isActive = false,
     ...props
 }: LinkButtonProps) {
     const Comp = asChild ? Slot : Link
     return (
         <Comp
-            href={href}
-            className={clsx(buttonVariants({ variant, size, className }))}
+            className={clsx(buttonVariants({ variant, size, className }), {
+                active: isActive,
+            })}
             {...props}
         >
-            {link}
+            {children || label}
         </Comp>
     )
 }
