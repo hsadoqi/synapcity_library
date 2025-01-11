@@ -9,8 +9,8 @@ import { NavigationItem } from '..'
 import { LucideMenu as HamburgerMenu } from 'lucide-react'
 
 type Item = {
-    link: string
-    href: string
+    label: string
+    slug: string
 }
 
 interface DropdownMenuProps {
@@ -38,8 +38,14 @@ export default function DropdownMenuComponent({
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-[--radix-popper-anchor-width]">
                     {items.map((item, index) => (
-                        <DropdownMenuItem key={`dropdown-${index}`}>
-                            <NavigationItem {...item} />
+                        <DropdownMenuItem
+                            key={`dropdown-${index}`}
+                            className="justify-center"
+                        >
+                            <NavigationItem
+                                label={item.label}
+                                slug={item.slug}
+                            />
                         </DropdownMenuItem>
                     ))}
                 </DropdownMenuContent>

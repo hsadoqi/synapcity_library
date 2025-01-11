@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
+
 import * as React from 'react'
 import { Command } from 'lucide-react'
 import {
@@ -16,7 +17,6 @@ import {
 } from '@/components/ui/sidebar'
 import { data } from './data'
 import clsx from 'clsx'
-import { useHeaderStore } from '@/stores/header-store'
 
 export type Item = {
     title: string
@@ -46,7 +46,6 @@ export default function IconNoteSidebar({
     setOpen,
 }: SubSidebarProps) {
     const { toggleSidebar } = useSidebar()
-    const { isLocked } = useHeaderStore()
 
     if (!setActiveItem || !setMails || !setOpen) {
         return null
@@ -58,7 +57,7 @@ export default function IconNoteSidebar({
             className="!w-[calc(var(--sidebar-width-icon)_+_1px)] border-r"
         >
             <SidebarHeader>
-                <SidebarMenu className={clsx({ 'pt-12': !isLocked })}>
+                <SidebarMenu className={clsx({ 'pt-12': true })}>
                     <SidebarMenuItem>
                         <SidebarMenuButton
                             size="lg"
