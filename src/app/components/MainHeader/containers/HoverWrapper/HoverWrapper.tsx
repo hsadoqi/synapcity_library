@@ -1,6 +1,6 @@
 'use client'
 
-import { useUIStore } from '@/providers/ui-store-provider'
+import { useHeaderStore } from '@/stores/header-store'
 import { useState } from 'react'
 import clsx from 'clsx'
 
@@ -9,40 +9,52 @@ export default function HoverWrapper({
 }: {
     children: React.ReactNode
 }) {
-    const [isVisible, setIsVisible] = useState(false)
     const [leaveTimeout, setLeaveTimeout] = useState<NodeJS.Timeout | null>(
         null,
     )
-    const { isHeaderLocked } = useUIStore((state) => state)
+
+    const { setIsHovered, isLocked, isVisible, setIsVisible } = useHeaderStore()
 
     const handleMouseEnter = () => {
         if (leaveTimeout) {
             clearTimeout(leaveTimeout)
             setLeaveTimeout(null)
         }
-        setIsVisible(true)
+        setIsHovered(true)
     }
 
     const handleMouseLeave = () => {
         const timeout = setTimeout(() => {
-            setIsVisible(false)
-        }, 500)
+            if (!isLocked) {
+                setIsVisible(false)
+            }
+            setIsHovered(false)
+        }, 1000)
         setLeaveTimeout(timeout)
     }
 
     return (
-        <div
-            className={clsx('hoverable-container h-full group')}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-        >
+        <>
             <div
-                className={clsx('header', {
-                    visible: isHeaderLocked || isVisible,
+                className={clsx('hoverable-container h-full group', {
+                    'w-full': isLocked,
+                    'w-1/2 mx-auto': !isLocked,
                 })}
+                onMouseEnter={handleMouseEnter}
+            />
+            <nav
+                className={clsx(
+                    'header w-full h-full flex justify-between items-center pr-2 md:px-4 shadow-sm',
+                    {
+                        'visible-header': isVisible || isLocked,
+                        'invisible-header': !isVisible && !isLocked,
+                    },
+                )}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
             >
                 {children}
-            </div>
-        </div>
+            </nav>
+        </>
     )
 }

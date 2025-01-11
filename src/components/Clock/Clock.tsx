@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 
-const Clock = () => {
+const Clock = ({ onClick }: { onClick: () => void }) => {
     const [currentTime, setCurrentTime] = useState<string>('')
 
     const updateClock = () => {
@@ -23,8 +23,11 @@ const Clock = () => {
     }, [])
 
     return (
-        <div className="py-1 px-3 rounded-md shadow-inner hover:shadow-none hover:cursor-pointer shadow-gray-300 dark:shadow-gray-800 border">
-            <p>Current Time: {currentTime}</p>
+        <div
+            onClick={onClick}
+            className="py-1 px-3 rounded-md shadow-inner dark:bg-foreground/5 hover:cursor-pointer shadow-gray-300 dark:shadow-gray-800 border"
+        >
+            <p className="text-lg font-bold">{currentTime}</p>
         </div>
     )
 }
