@@ -18,14 +18,11 @@ export interface SlidingTabProps {
 export default function SlidingTab({
     tab,
     tag,
-    children,
     firstChild = false,
     lastChild = false,
 }: SlidingTabProps) {
     const { activeTab, setActiveTab } = useTabStore()
     const isActive = activeTab === tab.label
-
-    console.log(tab, tag, children, firstChild, lastChild)
 
     return (
         <div

@@ -1,3 +1,3 @@
 export * from './SlidingTabs'
-export * from './TabContent'
+export * from './PanelContent'
 export * from './TabsList'

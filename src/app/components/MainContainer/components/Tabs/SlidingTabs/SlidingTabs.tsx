@@ -1,10 +1,17 @@
 'use client'
 
 import clsx from 'clsx'
-import SlidingTab from './SlidingTab/SlidingTab'
+// import SlidingTab from './SlidingTab/SlidingTab'
 import styles from './SlidingTab.module.css'
 import { useTabStore } from '@/stores/tab-store'
 import { useEffect, useRef } from 'react'
+import dynamic from 'next/dynamic'
+import { TabWrapper } from '../../../containers'
+
+const SlidingTab = dynamic(
+    () => import('./SlidingTab').then((mod) => mod.SlidingTab),
+    { ssr: false },
+)
 
 export type Tab = {
     label: string
@@ -36,24 +43,26 @@ export default function SlidingTabs({ tabs }: { tabs: Tab[] }) {
     }, [activeTab, tabs])
 
     return (
-        <div
-            ref={tabContainerRef}
-            className={clsx(
-                styles.container,
-                'bg-neutral-200 dark:bg-neutral-900 rounded',
-            )}
-        >
-            {tabs.map((tab, index) => {
-                const id = `tab-${index}`
-                return <SlidingTab key={id} tab={tab} tag={id} />
-            })}
-            <span
-                ref={gliderRef}
+        <TabWrapper>
+            <div
+                ref={tabContainerRef}
                 className={clsx(
-                    styles.glider,
-                    'glider bg-slate-300 dark:bg-neutral-800',
+                    styles.container,
+                    'bg-neutral-200 dark:bg-neutral-900 rounded',
                 )}
-            ></span>
-        </div>
+            >
+                {tabs.map((tab, index) => {
+                    const id = `tab-${index}`
+                    return <SlidingTab key={id} tab={tab} tag={id} />
+                })}
+                <span
+                    ref={gliderRef}
+                    className={clsx(
+                        styles.glider,
+                        'glider bg-slate-300 dark:bg-neutral-800',
+                    )}
+                ></span>
+            </div>
+        </TabWrapper>
     )
 }
