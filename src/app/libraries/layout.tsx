@@ -1,8 +1,8 @@
-import { Container } from './components/Container'
+import { SidebarContainer } from './components/SidebarContainer'
 export default function LibraryLayout({
     children,
 }: {
     children: React.ReactNode
 }) {
-    return <Container>{children}</Container>
+    return <SidebarContainer>{children}</SidebarContainer>
 }

@@ -1,10 +1,14 @@
 import { SidebarProvider, SidebarInset } from '@/components/ui/sidebar'
-import { NoteSidebar } from '../../../[parentType]/notes/components'
+import LibrarySidebar from '../LibrarySidebar/LibrarySidebar'
 
-export default function Container({ children }: { children: React.ReactNode }) {
+export default function SidebarContainer({
+    children,
+}: {
+    children: React.ReactNode
+}) {
     return (
         <SidebarProvider>
-            <NoteSidebar side="left" />
+            <LibrarySidebar />
             <SidebarInset>{children}</SidebarInset>
         </SidebarProvider>
     )
