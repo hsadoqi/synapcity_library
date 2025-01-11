@@ -157,7 +157,7 @@
     }
 
     .hoverable-container {
-        min-height: 64px;
+        min-height: 12px;
         width: 75%;
         background: transparent;
         position: absolute;

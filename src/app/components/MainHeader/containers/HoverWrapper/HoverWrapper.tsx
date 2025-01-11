@@ -36,10 +36,7 @@ export default function HoverWrapper({
     return (
         <>
             <div
-                className={clsx('hoverable-container h-full group', {
-                    'w-full': isLocked,
-                    'w-1/2 mx-auto': !isLocked,
-                })}
+                className={clsx('hoverable-container group w-full')}
                 onMouseEnter={handleMouseEnter}
             />
             <nav
