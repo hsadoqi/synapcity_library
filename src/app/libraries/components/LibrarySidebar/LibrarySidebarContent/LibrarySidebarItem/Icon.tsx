@@ -1,15 +1,15 @@
 import { LucideProps, icons } from 'lucide-react'
 
 interface IconProps extends LucideProps {
-    name: keyof typeof icons
+    icon: keyof typeof icons
 }
 
-const Icon = ({ name, ...props }: IconProps) => {
-    const LucideIcon = icons[name]
+const Icon = ({ icon, ...props }: IconProps) => {
+    const LucideIcon = icons[icon]
 
     if (!LucideIcon) {
-        console.error(`Icon with name "${name}" not found.`)
-        return null // Or a fallback icon
+        console.error(`Icon with name "${icon}" not found.`)
+        return null
     }
 
     return <LucideIcon {...props} />
