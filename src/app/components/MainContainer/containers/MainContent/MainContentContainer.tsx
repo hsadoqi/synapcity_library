@@ -51,6 +51,7 @@ export default function MainContentContainer({
             <Suspense fallback={<div>Loading...</div>}>
                 <div
                     ref={mainContainerRef}
+                    id="main-content-container"
                     className={clsx(
                         'shadow-md hover:shadow-lg scroll-y-container relative flex flex-col flex-1 w-full h-full',
                     )}

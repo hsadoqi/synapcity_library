@@ -1,29 +1,32 @@
 import { SidebarMenuItem, SidebarMenuButton } from '@/components/ui/sidebar'
-import { SidebarItem } from '../LibrarySidebarContent'
 import Icon from './Icon'
+import { Library } from '@/types/libraryData'
+import { useLibraryStore } from '@/stores/library-store'
 
 interface SidebarContentProps {
-    item: SidebarItem
+    library: Library
     isActive?: boolean
     onClick?: () => void
 }
 
 export default function LibrarySidebarItem({
-    item,
+    library,
     ...props
 }: SidebarContentProps) {
+    const { setLibrary } = useLibraryStore()
     return (
         <SidebarMenuItem>
             <SidebarMenuButton
                 tooltip={{
-                    children: item.title,
+                    children: library.name,
                     hidden: false,
                 }}
                 className="px-2.5 md:px-2"
+                onClick={() => setLibrary(library)}
                 {...props}
             >
-                <Icon name={item.icon} {...item} />
-                <span>{item.title}</span>
+                <Icon icon={library.icon} />
+                <span>{library.name}</span>
             </SidebarMenuButton>
         </SidebarMenuItem>
     )

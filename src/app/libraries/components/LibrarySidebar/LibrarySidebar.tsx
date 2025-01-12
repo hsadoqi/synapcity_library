@@ -3,21 +3,20 @@
 import * as React from 'react'
 import { Sidebar } from '@/components/ui/sidebar'
 import { SidebarHeader } from './LibrarySidebarHeader'
-import { SidebarContent, SidebarItem } from './LibrarySidebarContent'
+import { SidebarContent } from './LibrarySidebarContent'
 import { ExtendedLibrarySidebar } from '../ExtendedLibrarySidebar'
-import items from './libraries.json'
-
-export const defaultItem: SidebarItem = {
-    id: '0',
-    title: 'All Libraries',
-    icon: 'Command',
-    slug: '#',
-}
+import { useEffect } from 'react'
+import { useLibraryStore } from '@/stores/library-store'
+// import { useNotebookStore } from '@/stores/notebook-store'
 
 export default function LibrarySidebar({
     ...props
 }: React.ComponentProps<typeof Sidebar>) {
-    const [activeItem, setActiveItem] = React.useState<SidebarItem>(defaultItem)
+    const { loadLibraries } = useLibraryStore()
+
+    useEffect(() => {
+        loadLibraries()
+    }, [loadLibraries])
 
     return (
         <Sidebar
@@ -28,22 +27,12 @@ export default function LibrarySidebar({
         >
             <Sidebar
                 collapsible="none"
-                className="!w-[calc(var(--sidebar-width-icon)_+_1px)] border-r pt-4"
+                className="!w-[calc(var(--sidebar-width-icon)_+_1px)] border-r pt-6"
             >
-                <SidebarHeader
-                    item={activeItem}
-                    setActiveItem={setActiveItem}
-                />
-                <SidebarContent
-                    activeItem={activeItem as SidebarItem}
-                    setActiveItem={setActiveItem}
-                />
+                <SidebarHeader />
+                <SidebarContent />
             </Sidebar>
-            <ExtendedLibrarySidebar
-                activeItem={activeItem as SidebarItem}
-                items={items as SidebarItem[]}
-                setActiveItem={setActiveItem}
-            />
+            <ExtendedLibrarySidebar />
         </Sidebar>
     )
 }

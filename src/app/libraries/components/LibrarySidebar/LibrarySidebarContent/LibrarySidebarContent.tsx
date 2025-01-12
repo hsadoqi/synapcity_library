@@ -9,7 +9,7 @@ import {
 } from '@/components/ui/sidebar'
 import { LibrarySidebarItem } from './LibrarySidebarItem'
 import type Lucide from 'lucide-react'
-import items from '../libraries.json'
+import { useLibraryStore } from '@/stores/library-store'
 
 export type SidebarItem = {
     id: string
@@ -18,26 +18,22 @@ export type SidebarItem = {
     slug: string
 }
 
-export default function LibrarySidebarContent({
-    activeItem,
-    setActiveItem,
-}: {
-    activeItem: SidebarItem
-    setActiveItem: (item: SidebarItem) => void
-}) {
+export default function LibrarySidebarContent() {
     const { setOpen } = useSidebar()
+    const { libraries, selectedLibrary, setLibrary } = useLibraryStore()
+
     return (
         <SidebarContent>
             <SidebarGroup>
                 <SidebarGroupContent className="px-1.5 md:px-0">
                     <SidebarMenu>
-                        {(items as SidebarItem[]).map((item, index) => (
+                        {libraries.map((library, index) => (
                             <LibrarySidebarItem
                                 key={`item-${index}`}
-                                item={item}
-                                isActive={activeItem === item}
+                                library={library}
+                                isActive={selectedLibrary?.id === library.id}
                                 onClick={() => {
-                                    setActiveItem(item)
+                                    setLibrary(library)
                                     setOpen(true)
                                 }}
                             />
