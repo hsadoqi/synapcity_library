@@ -25,6 +25,7 @@ export type NotebookState = {
     filteredNotebooks: Notebook[]
     selectedNotebook: Notebook | null
     defaultNotebook: Notebook
+    isSidebarOpen: boolean
 }
 
 export type NotebookActions = {
@@ -36,11 +37,17 @@ export type NotebookActions = {
     archiveNotebook: () => void
     restoreNotebook: () => void
     updateNotebook: (Notebook: Partial<Notebook>) => void
+    setSidebarOpen: (isSidebarOpen: boolean) => void
+    toggleSidebar: () => void
 }
 
 export type NotebookStore = NotebookState & NotebookActions
 
 export const notebookStore = createStore<NotebookStore>()((set) => ({
+    isSidebarOpen: false,
+    setSidebarOpen: (isSidebarOpen) => set({ isSidebarOpen }),
+    toggleSidebar: () =>
+        set((state) => ({ isSidebarOpen: !state.isSidebarOpen })),
     notebooks: [defaultNotebook],
     filteredNotebooks: [defaultNotebook],
     selectedNotebook: null,

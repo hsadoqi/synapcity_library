@@ -48,6 +48,7 @@ export type LibraryState = {
     filteredLibraries: Library[]
     selectedLibrary: Library | null
     defaultLibrary: Library
+    isSidebarOpen: boolean
 }
 
 export type LibraryActions = {
@@ -58,12 +59,18 @@ export type LibraryActions = {
     archiveLibrary: () => void
     restoreLibrary: () => void
     updateLibrary: (library: Partial<Library>) => void
+    setSidebarOpen: (isOpen: boolean) => void
+    toggleSidebar: () => void
 }
 
 export type LibraryStore = LibraryState & LibraryActions
 
 export const libraryStore = createStore<LibraryStore>()(
     subscribeWithSelector((set) => ({
+        isSidebarOpen: false,
+        setSidebarOpen: (isOpen) => set({ isSidebarOpen: isOpen }),
+        toggleSidebar: () =>
+            set((state) => ({ isSidebarOpen: !state.isSidebarOpen })),
         libraries: [],
         filteredLibraries: [],
         selectedLibrary: null,
