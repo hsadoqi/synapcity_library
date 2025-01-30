@@ -5,6 +5,7 @@ export type HeaderState = {
     isLocked: boolean
     isHovered: boolean
     isAreasVisible: boolean
+    isAppLocked: boolean
 }
 
 export type HeaderActions = {
@@ -21,6 +22,7 @@ export const initHeaderStore = (): HeaderState => ({
     isLocked: true,
     isHovered: false,
     isAreasVisible: false,
+    isAppLocked: false,
 })
 
 export const defaultInitState: HeaderState = {
@@ -28,6 +30,7 @@ export const defaultInitState: HeaderState = {
     isLocked: true,
     isHovered: false,
     isAreasVisible: true,
+    isAppLocked: false,
 }
 
 export const createHeaderStore = (initState: HeaderState = defaultInitState) =>
@@ -35,7 +38,11 @@ export const createHeaderStore = (initState: HeaderState = defaultInitState) =>
         ...initState,
         setIsVisible: (open) =>
             set((state) => {
-                const isOpen = state.isLocked ? true : open
+                const isOpen = state.isAppLocked
+                    ? false
+                    : state.isLocked
+                      ? true
+                      : open
                 return {
                     isVisible: isOpen !== undefined ? isOpen : !state.isVisible,
                 }

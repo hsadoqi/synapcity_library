@@ -12,7 +12,7 @@ export default function MainHeaderPanel() {
     return (
         <div
             className={clsx('shadow-sm flex flex-col w-full', {
-                'visible-panel h-full md:h-3/4 lg:h-1/2': isPanelVisible,
+                'visible-panel h-full md:h-3/4 lg:h-1/2 mt-4': isPanelVisible,
                 'hidden-panel': !isPanelVisible,
                 'pointer-events-none': !isVisible,
             })}
