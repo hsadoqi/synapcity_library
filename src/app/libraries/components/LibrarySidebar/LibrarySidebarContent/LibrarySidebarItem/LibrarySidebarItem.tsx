@@ -3,7 +3,7 @@ import Icon from './Icon'
 import { Library } from '@/types/libraryData'
 import { useLibraryStore } from '@/stores/library-store'
 import { clsx } from 'clsx'
-import { Color } from '@/types'
+import Link from 'next/link'
 
 interface SidebarContentProps {
     library: Library
@@ -18,12 +18,10 @@ export default function LibrarySidebarItem({
 }: SidebarContentProps) {
     const { setLibrary } = useLibraryStore()
 
-    const generateActiveStyles = (color: Color) =>
-        `border-2 border-${color}-500 bg-${color}-700 text-white dark:bg-${color}-300 dark:text-${color}-900`
     const hoverStyles = `hover:border-2 hover:border-${library.color}-500 transition-all ease-in-out duration-300`
-    const activeStyles = isActive ? generateActiveStyles(library.color) : ''
-    // console.log('active styles', activeStyles)
-    // const activeStyles = 'border-2 border-blue-500 bg-blue-700 text-white dark:bg-blue-300 dark:text-blue-900';
+    const activeStyles = isActive
+        ? `border-2 border-active-500 bg-active-100 dark:stroke-white dark:text-active-100 stroke-1 dark:hover:text-white dark:bg-active-800 text-active-900`
+        : ''
 
     return (
         <SidebarMenuItem>
@@ -35,12 +33,15 @@ export default function LibrarySidebarItem({
                 variant={isActive ? 'outline' : 'default'}
                 className={clsx('inline-flex', hoverStyles, activeStyles)}
                 onClick={() => setLibrary(library)}
+                asChild
                 {...props}
             >
-                <Icon icon={library.icon} />
-                <span aria-hidden="true" className="hidden">
-                    {library.name}
-                </span>
+                <Link href={`/libraries`}>
+                    <Icon icon={library.icon} />
+                    <span aria-hidden="true" className="hidden">
+                        {library.name}
+                    </span>
+                </Link>
             </SidebarMenuButton>
         </SidebarMenuItem>
     )

@@ -5,7 +5,7 @@ import { SidebarInset } from '@/components/ui/sidebar'
 import { LibraryIconSidebar } from '../LibraryIconSidebar'
 import { useEffect } from 'react'
 import { useLibraryStore } from '@/stores/library-store'
-// import { NotebooksSidebar } from "@/components/Notebooks";
+
 export default function LibraryContainer({
     children,
 }: {
