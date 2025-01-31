@@ -49,6 +49,19 @@
         background-color: #888;
         border-radius: 3px;
     }
+
+    :root {
+        --active-50: #f3f4f6;
+        --active-100: #e5e7eb;
+        --active-200: #d1d5db;
+        --active-300: #9ca3af;
+        --active-400: #6b7280;
+        --active-500: #4b5563;
+        --active-600: #374151;
+        --active-700: #1f2937;
+        --active-800: #111827;
+        --active-900: #0f172a;
+    }
 }
 
 @layer utilities {
@@ -151,9 +164,10 @@
     }
 
     .header-container {
-        z-index: 50;
+        z-index: 30;
         width: 100%;
         position: absolute;
+        max-height: 12px;
     }
 
     .hoverable-container {

@@ -12,6 +12,19 @@ export default {
 	theme: {
 		extend: {
 			colors: {
+				active: {
+					50: "var(--active-50)",
+					100: "var(--active-100)",
+					200: "var(--active-200)",
+					300: "var(--active-300)",
+					400: "var(--active-400)",
+					500: "var(--active-500)",
+					600: "var(--active-600)",
+					700: "var(--active-700)",
+					800: "var(--active-800)",
+					900: "var(--active-900)",
+					950: "var(--active-950)",
+				},
 				background: "hsl(var(--background))",
 				foreground: "hsl(var(--foreground))",
 				card: {
