@@ -7,7 +7,6 @@ import { SidebarContent } from './LibrarySidebarContent'
 import { ExtendedLibrarySidebar } from '../ExtendedLibrarySidebar'
 import { useEffect } from 'react'
 import { useLibraryStore } from '@/stores/library-store'
-// import { useNotebookStore } from '@/stores/notebook-store'
 
 export default function LibrarySidebar({
     ...props
@@ -27,7 +26,7 @@ export default function LibrarySidebar({
         >
             <Sidebar
                 collapsible="none"
-                className="!w-[calc(var(--sidebar-width-icon)_+_1px)] border-r pt-6"
+                className="!w-[calc(var(--sidebar-width-icon)_+_1px)] shadow-inner pt-4"
             >
                 <SidebarHeader />
                 <SidebarContent />

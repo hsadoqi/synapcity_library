@@ -6,14 +6,15 @@ import {
     SidebarGroupContent,
 } from '@/components/ui/sidebar'
 import ExtendedLibrarySidebarItem from '../ExtendedLibrarySidebarItem/ExtendedLibrarySidebarItem'
-// import LibrarySearch from '../../LibrarySearch/LibrarySearch'
 import { useNotebookStore } from '@/stores/notebook-store'
+import { FloatingSearch } from '@/components'
 
 export default function ExtendedLibrarySidebarContent() {
     const { filteredNotebooks } = useNotebookStore()
     return (
-        <SidebarContent>
-            <SidebarGroup>
+        <SidebarContent className="bg-white/80 dark:bg-black/80 shadow-inner">
+            <SidebarGroup className="py-0">
+                <FloatingSearch variant="ghost" />
                 <SidebarGroupContent>
                     {filteredNotebooks.map((notebook, index) => (
                         <ExtendedLibrarySidebarItem
