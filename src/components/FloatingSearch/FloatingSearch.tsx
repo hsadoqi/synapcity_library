@@ -3,12 +3,14 @@
 import { Search } from 'lucide-react'
 import { Button } from '../ui'
 import clsx from 'clsx'
-import { SearchNotebooksInput } from './SearchNotebooksInput'
+import { SearchNotebooksInput } from './SearchInput'
 import { useRef, useState, useEffect } from 'react'
 
 export default function FloatingSearch({
     variant = 'ghost',
     className = '',
+    notebooks = false,
+    notes = false,
 }: {
     variant?:
         | 'default'
@@ -22,6 +24,8 @@ export default function FloatingSearch({
         | null
         | undefined
     className?: string
+    notebooks?: boolean
+    notes?: boolean
 }) {
     const wrapperRef = useRef<HTMLDivElement | null>(null)
     const searchRef = useRef<HTMLInputElement | null>(null)
@@ -70,7 +74,12 @@ export default function FloatingSearch({
             >
                 <Search />
             </Button>
-            <SearchNotebooksInput ref={searchRef} show={showSearch} />
+            <SearchNotebooksInput
+                ref={searchRef}
+                show={showSearch}
+                notebooks={notebooks}
+                notes={notes}
+            />
         </div>
     )
 }
