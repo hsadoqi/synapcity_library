@@ -1,6 +1,5 @@
 'use client'
 
-import { LibrarySearch } from '@/app/libraries/components/LibrarySearch'
 import { Button } from '@/components'
 import {
     SidebarHeader,
@@ -82,7 +81,6 @@ export default function ExtendedNotebooksContainer() {
                             )
                         })}
                     </div>
-                    <LibrarySearch />
                 </div>
             </SidebarHeader>
             <SidebarContent>

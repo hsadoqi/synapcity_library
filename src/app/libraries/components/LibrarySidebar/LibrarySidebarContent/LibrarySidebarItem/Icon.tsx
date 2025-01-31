@@ -1,18 +1,34 @@
-import { LucideProps, icons } from 'lucide-react'
+import { LucideProps, icons as lucideIcons } from 'lucide-react'
+import { Icon, IconProps } from '@iconify/react'
 
-interface IconProps extends LucideProps {
-    icon: keyof typeof icons
+interface LucideIconProps extends LucideProps {
+    icon: keyof typeof lucideIcons
 }
 
-const Icon = ({ icon, ...props }: IconProps) => {
-    const LucideIcon = icons[icon]
+interface IconifyIconComponentProps extends IconProps {
+    icon: string
+}
+
+const LucideIconComponent = ({ ...props }: LucideIconProps) => {
+    const LucideIcon = lucideIcons[props.icon]
 
     if (!LucideIcon) {
-        console.error(`Icon with name "${icon}" not found.`)
+        console.error(
+            `Icon with name "${props.icon}" not found in Lucide icons.`,
+        )
         return null
     }
 
     return <LucideIcon {...props} />
 }
 
-export default Icon
+const IconComponent = (props: LucideIconProps | IconifyIconComponentProps) => {
+    const lucideIcon = lucideIcons[props.icon as keyof typeof lucideIcons]
+    if (!!lucideIcon) {
+        return <LucideIconComponent {...(props as LucideIconProps)} />
+    } else {
+        return <Icon {...(props as IconProps)} />
+    }
+}
+
+export default IconComponent

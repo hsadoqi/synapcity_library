@@ -1,12 +1,13 @@
 import { icons } from 'lucide-react'
 import { Color, ColorShade } from './styling'
+import { IconifyIcon } from '@iconify/types'
 
+type Icon = keyof typeof icons | string | IconifyIcon
 export type Library = {
     id: string
     name: string
-    description?: string
     color: Color
-    icon: keyof typeof icons
+    icon: string
     tags: string[]
     notebooks: Notebook[]
     isStarred: boolean
@@ -24,7 +25,7 @@ export type Notebook = {
     name: string
     description?: string
     shade: ColorShade
-    icon?: keyof typeof icons
+    icon?: Icon
     tags: string[]
     notes: Note[]
     libraryId: string
@@ -42,7 +43,7 @@ export type Note = {
     title: string
     description?: string
     content: string
-    icon?: keyof typeof icons
+    icon?: Icon
     tags: string[]
     notebooks: Notebook[]
     isStarred: boolean

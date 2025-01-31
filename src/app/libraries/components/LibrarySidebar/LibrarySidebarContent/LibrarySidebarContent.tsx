@@ -10,6 +10,7 @@ import {
 import { LibrarySidebarItem } from './LibrarySidebarItem'
 import type Lucide from 'lucide-react'
 import { useLibraryStore } from '@/stores/library-store'
+import { useNotebookStore } from '@/stores/notebook-store'
 
 export type SidebarItem = {
     id: string
@@ -19,8 +20,9 @@ export type SidebarItem = {
 }
 
 export default function LibrarySidebarContent() {
-    const { setOpen } = useSidebar()
+    const { setOpen, open } = useSidebar()
     const { libraries, selectedLibrary, setLibrary } = useLibraryStore()
+    const { setNotebook } = useNotebookStore()
 
     return (
         <SidebarContent>
@@ -31,10 +33,19 @@ export default function LibrarySidebarContent() {
                             <LibrarySidebarItem
                                 key={`item-${index}`}
                                 library={library}
-                                isActive={selectedLibrary?.id === library.id}
+                                isActive={
+                                    (selectedLibrary &&
+                                        selectedLibrary?.id === library.id) ||
+                                    (!selectedLibrary && library.default)
+                                }
                                 onClick={() => {
+                                    setOpen(
+                                        library !== selectedLibrary || !open,
+                                    )
                                     setLibrary(library)
-                                    setOpen(true)
+                                    if (library !== selectedLibrary) {
+                                        setNotebook(null)
+                                    }
                                 }}
                             />
                         ))}

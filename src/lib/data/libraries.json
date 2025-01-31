@@ -3,7 +3,7 @@
         "id": "1",
         "name": "Personal",
         "color": "blue",
-        "icon": "Book",
+        "icon": "basil:book-outline",
         "tags": ["important", "personal"],
         "notebooks": [
             {
@@ -58,7 +58,7 @@
         "id": "2",
         "name": "Work",
         "color": "green",
-        "icon": "Briefcase",
+        "icon": "pajamas:work",
         "tags": ["work", "projects"],
         "notebooks": [
             {
@@ -100,14 +100,14 @@
         "id": "2870",
         "name": "Front-end Development",
         "color": "blue",
-        "icon": "Code",
+        "icon": "clarity:design-line",
         "tags": ["development", "frontend", "code"],
         "notebooks": [
             {
                 "id": "1922",
                 "name": "React Projects",
                 "shade": 400,
-                "icon": "ReactLogo",
+                "icon": "Code",
                 "tags": ["react", "javascript"],
                 "libraryId": "2870",
                 "notes": [
@@ -151,7 +151,7 @@
                 "id": "5319",
                 "name": "CSS Frameworks",
                 "shade": 500,
-                "icon": "CSS",
+                "icon": "Brush",
                 "tags": ["css", "frameworks"],
                 "libraryId": "2870",
                 "notes": [
@@ -188,8 +188,8 @@
     {
         "id": "8458",
         "name": "Basement Renovation",
-        "color": "brown",
-        "icon": "Hammer",
+        "color": "pink",
+        "icon": "ri:hammer-fill",
         "tags": ["renovation", "home"],
         "notebooks": [
             {
@@ -248,7 +248,7 @@
         "id": "1716",
         "name": "Fitness",
         "color": "green",
-        "icon": "Footprints",
+        "icon": "mingcute:fitness-line",
         "tags": ["health", "workout"],
         "notebooks": [
             {

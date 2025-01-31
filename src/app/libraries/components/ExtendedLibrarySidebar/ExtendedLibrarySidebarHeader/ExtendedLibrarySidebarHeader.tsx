@@ -1,72 +1,77 @@
 'use client'
 
 import { SidebarHeader } from '@/components/ui/sidebar'
-import { Label } from '@radix-ui/react-dropdown-menu'
-import { ChevronDownCircle, ChevronLeftCircle } from 'lucide-react'
 import { Button } from '@/components'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { clsx } from 'clsx'
 import { useLibraryStore } from '@/stores/library-store'
 import { Library } from '@/types/libraryData'
-import LibrarySearch from '../../LibrarySearch/LibrarySearch'
+import CurrentLibrarySubHeader from './CurrentLibrarySubHeader/CurrentLibrarySubHeader'
+import { useHeaderStore } from '@/stores/header-store'
 
 export default function ExtendedLibrarySidebarHeader() {
-    const { selectedLibrary, defaultLibrary, libraries, setLibrary } =
-        useLibraryStore()
+    const { selectedLibrary, libraries, setLibrary } = useLibraryStore()
+    const { isVisible: isHeaderVisible } = useHeaderStore()
+    const searchRef = useRef<HTMLInputElement | null>(null)
+    const [showSearch, setShowSearch] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
 
+    useEffect(() => {
+        if (showSearch && searchRef.current) {
+            searchRef.current.focus()
+        }
+    }, [showSearch])
+
+    const toggleSearch = () => {
+        setShowSearch((prev) => !prev)
+    }
+
     const toggleOpen = () => {
+        setShowSearch(false)
         setIsOpen((prev) => !prev)
     }
 
     return (
-        <SidebarHeader className="border-b">
-            <div className="flex flex-col w-full h-full items-center justify-between overflow-hidden pb-2">
-                <Label className="flex items-center text-sm justify-between flex-1 w-full">
-                    <Button
-                        onClick={toggleOpen}
-                        variant="ghost"
-                        size="icon"
-                        className="h-full w-full px-2"
-                    >
-                        <div className="text-base font-semibold text-foreground flex w-full items-center justify-between py-4">
-                            <span className="leading-none">
-                                {selectedLibrary
-                                    ? selectedLibrary.name
-                                    : defaultLibrary.name}
-                            </span>
-                            {isOpen ? (
-                                <ChevronDownCircle className="h-5 w-5 shrink-0" />
-                            ) : (
-                                <ChevronLeftCircle className="h-5 w-5 shrink-0" />
-                            )}
-                        </div>
-                    </Button>
-                </Label>
+        <SidebarHeader
+            className={clsx(
+                'border-b-[1px] border-active-700 bg-active-200 dark:bg-black/80 pt-4',
+                {
+                    'pt-6': isHeaderVisible,
+                },
+            )}
+        >
+            <div className="flex flex-col w-full h-full items-center justify-between overflow-hidden">
+                <CurrentLibrarySubHeader
+                    toggleSearch={toggleSearch}
+                    toggleOpen={toggleOpen}
+                    isOpen={isOpen}
+                />
                 <div
-                    className={`transition-all duration-300 ease-in-out overflow-y-auto scrollbar-sm w-full border shadow-inner ${
+                    className={`transition-all duration-300 ease-in-out overflow-y-auto scrollbar-sm w-full shadow-inner rounded-b-md scale-95 ${
                         isOpen
                             ? 'max-h-28 opacity-100 visible'
                             : 'max-h-0 opacity-0 invisible'
                     }`}
                 >
                     {libraries.map((item, index) => {
-                        if (item && item.default) return
+                        if (item === selectedLibrary) return
                         return (
                             <Button
                                 key={`search-item-${index}`}
-                                onClick={() =>
+                                onClick={() => {
                                     setLibrary(item as unknown as Library)
-                                }
+                                    toggleOpen()
+                                }}
                                 variant={
                                     item.id === selectedLibrary?.id
                                         ? 'inner'
                                         : 'ghost'
                                 }
                                 className={clsx(
-                                    'justify-start w-full rounded-none',
+                                    'justify-start w-full rounded-none hover:bg-active-50 bg-white dark:bg-active-950 dark:hover:bg-active-900 dark:active:bg-active-800',
                                     {
                                         active: item.id === selectedLibrary?.id,
+                                        'shadow-inner': item.default,
                                     },
                                 )}
                             >
@@ -75,7 +80,6 @@ export default function ExtendedLibrarySidebarHeader() {
                         )
                     })}
                 </div>
-                <LibrarySearch />
             </div>
         </SidebarHeader>
     )

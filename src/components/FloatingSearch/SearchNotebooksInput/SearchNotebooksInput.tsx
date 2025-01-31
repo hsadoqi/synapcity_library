@@ -1,10 +1,17 @@
 'use client'
 
 import { SidebarInput } from '@/components/ui/sidebar'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, RefObject } from 'react'
 import { useNotebookStore } from '@/stores/notebook-store'
+import clsx from 'clsx'
 
-export default function LibrarySearch() {
+export default function SearchNotebooks({
+    ref,
+    show = false,
+}: {
+    ref: RefObject<HTMLInputElement | null>
+    show: boolean
+}) {
     const { filterNotebooks, resetFilters } = useNotebookStore()
     const [searchQuery, setSearchQuery] = useState('')
 
@@ -25,10 +32,21 @@ export default function LibrarySearch() {
     }
 
     return (
-        <div className="w-full flex justify-center pt-2">
+        <div
+            className={clsx(
+                'flex justify-center items-center transition-transform ease-in-out duration-500',
+                {
+                    '-translate-y-full opacity-0': !show,
+                    'translate-y-0 opacity-100': show,
+                },
+            )}
+        >
             <SidebarInput
+                ref={ref}
                 placeholder="Type to search..."
-                className="w-full p-4 px-4 mx-8"
+                className={clsx(
+                    'w-full px-8 bg-active-50 dark:bg-black/80 outline-active-500 focus-visible:ring-active-500',
+                )}
                 onChange={(e) =>
                     handleInputChange(e.target.value.toLowerCase())
                 }
