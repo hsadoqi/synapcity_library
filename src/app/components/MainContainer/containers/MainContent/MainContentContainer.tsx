@@ -40,7 +40,7 @@ export default function MainContentContainer({
     return (
         <div
             className={clsx(
-                'main-container flex flex-col size-full relative transition-all duration-1000 ease-in-out',
+                'main-container flex flex-col size-full relative transition-all duration-1000 ease-in-out border-t border-active-500',
                 {
                     'pt-0 delay-300': !isVisible,
                 },
@@ -52,7 +52,7 @@ export default function MainContentContainer({
                     ref={mainContainerRef}
                     id="main-content-container"
                     className={clsx(
-                        'scroll-y-container relative flex flex-col flex-1 size-full',
+                        'scroll-y-container relative flex flex-col flex-1 size-full border-t border-active-500',
                     )}
                 >
                     {children}
