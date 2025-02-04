@@ -7,11 +7,9 @@ import { clsx } from 'clsx'
 import { useLibraryStore } from '@/stores/library-store'
 import { Library } from '@/types/libraryData'
 import CurrentLibrarySubHeader from './CurrentLibrarySubHeader/CurrentLibrarySubHeader'
-import { useHeaderStore } from '@/stores/header-store'
 
 export default function ExtendedLibrarySidebarHeader() {
     const { selectedLibrary, libraries, setLibrary } = useLibraryStore()
-    const { isVisible: isHeaderVisible } = useHeaderStore()
     const searchRef = useRef<HTMLInputElement | null>(null)
     const [showSearch, setShowSearch] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
@@ -34,13 +32,20 @@ export default function ExtendedLibrarySidebarHeader() {
     return (
         <SidebarHeader
             className={clsx(
-                'border-b border-active-700 bg-active-200 dark:bg-black/80',
+                'border-b border-active-700 bg-active-200 dark:bg-black/80 py-0',
                 {
-                    'px-2 py-3': isHeaderVisible,
+                    'p-2': isOpen,
                 },
             )}
         >
-            <div className="flex flex-col w-full items-center justify-between overflow-hidden">
+            <div
+                className={clsx(
+                    'flex flex-col w-full items-center justify-center overflow-hidden',
+                    {
+                        'h-16': !isOpen,
+                    },
+                )}
+            >
                 <CurrentLibrarySubHeader
                     toggleSearch={toggleSearch}
                     toggleOpen={toggleOpen}

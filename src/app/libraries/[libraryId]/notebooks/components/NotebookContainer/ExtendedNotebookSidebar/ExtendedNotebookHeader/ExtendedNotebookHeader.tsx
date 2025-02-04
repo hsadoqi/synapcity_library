@@ -6,12 +6,10 @@ import { useEffect, useRef, useState } from 'react'
 import { clsx } from 'clsx'
 import { useNotebookStore } from '@/stores/notebook-store'
 import { Notebook } from '@/types/libraryData'
-import { useHeaderStore } from '@/stores/header-store'
 import { CurrentNotebookSubHeader } from './CurrentNotebookSubHeader'
 
 export default function ExtendedNotebookSidebarHeader() {
     const { selectedNotebook, notebooks, setNotebook } = useNotebookStore()
-    const { isVisible: isHeaderVisible } = useHeaderStore()
     const searchRef = useRef<HTMLInputElement | null>(null)
     const [showSearch, setShowSearch] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
@@ -32,13 +30,20 @@ export default function ExtendedNotebookSidebarHeader() {
     return (
         <SidebarHeader
             className={clsx(
-                'border-b border-active-700 bg-active-200 dark:bg-black/80',
+                'border-b border-active-700 bg-active-200 dark:bg-black/80 py-0',
                 {
-                    'px-4 py-3': isHeaderVisible,
+                    'p-2': isOpen,
                 },
             )}
         >
-            <div className="flex flex-col w-full h-full items-center justify-between overflow-hidden">
+            <div
+                className={clsx(
+                    'flex flex-col w-full items-center justify-center overflow-hidden',
+                    {
+                        'h-16': !isOpen,
+                    },
+                )}
+            >
                 <CurrentNotebookSubHeader
                     toggleSearch={toggleSearch}
                     toggleOpen={toggleOpen}
