@@ -1,5 +1,6 @@
 import { SidebarProvider, SidebarInset } from '@/components/ui/sidebar'
 import { NotebooksSidebar } from './NotebooksSidebar'
+import PageLayoutContainer from '@/components/PageLayoutContainer/PageLayoutContainer'
 
 export default function NotebookContainer({
     children,
@@ -9,7 +10,9 @@ export default function NotebookContainer({
     return (
         <SidebarProvider>
             <NotebooksSidebar />
-            <SidebarInset>{children}</SidebarInset>
+            <SidebarInset>
+                <PageLayoutContainer>{children}</PageLayoutContainer>
+            </SidebarInset>
         </SidebarProvider>
     )
 }
