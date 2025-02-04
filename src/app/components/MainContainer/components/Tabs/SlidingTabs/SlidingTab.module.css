@@ -1,0 +1,47 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tabs {
+    display: flex;
+    position: relative;
+    width: 100%;
+    background-color: color(--background);
+    box-shadow:
+        0 0 1px 0 rgba(#185ee0, 0.15),
+        0 6px 12px 0 rgba(#185ee0, 0.15);
+    padding: 0.75rem;
+    z-index: 3;
+}
+
+.tab {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 96px;
+    font-size: 1.25rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.15s ease-in;
+    z-index: 2;
+}
+
+.glider {
+    position: absolute;
+    display: flex;
+    height: 36px;
+    width: 96px;
+    background-color: var(--secondary-color);
+    z-index: 1;
+    transition: 0.25s ease-out;
+}
+
+@media (max-width: 700px) {
+    .tabs {
+        transform: scale(0.6);
+    }
+}

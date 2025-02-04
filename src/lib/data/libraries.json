@@ -1,0 +1,322 @@
+[
+    {
+        "id": "1",
+        "name": "Personal",
+        "color": "blue",
+        "icon": "basil:book-outline",
+        "tags": ["important", "personal"],
+        "notebooks": [
+            {
+                "id": "1",
+                "name": "Travel Plans",
+                "shade": 500,
+                "icon": "NotebookPen",
+                "tags": ["travel"],
+                "notes": [
+                    {
+                        "id": "1",
+                        "name": "Vacation to Italy",
+                        "content": "Pack bags, book tickets, and plan itinerary.",
+                        "notebooks": [],
+                        "createdAt": "2024-12-13T00:00:00",
+                        "updatedAt": "2024-12-18T00:00:00",
+                        "lastAccessedAt": "2025-01-11T00:00:00",
+                        "isStarred": true,
+                        "isArchived": false,
+                        "isDeleted": false
+                    },
+                    {
+                        "id": "2",
+                        "name": "Camping Gear Checklist",
+                        "content": "Tent, sleeping bags, food supplies, and first aid kit.",
+                        "notebooks": [],
+                        "createdAt": "2024-12-13T00:00:00",
+                        "updatedAt": "2024-12-18T00:00:00",
+                        "lastAccessedAt": "2025-01-11T00:00:00",
+                        "isStarred": false,
+                        "isArchived": false,
+                        "isDeleted": false
+                    }
+                ],
+                "isStarred": false,
+                "isArchived": false,
+                "isDeleted": false,
+                "libraryId": "1",
+                "createdAt": "2024-12-23T00:00:00",
+                "updatedAt": "2024-12-25T00:00:00",
+                "lastAccessedAt": "2025-01-09T00:00:00"
+            }
+        ],
+        "isStarred": false,
+        "isArchived": false,
+        "isDeleted": false,
+        "createdAt": "2024-12-13T00:00:00",
+        "updatedAt": "2024-12-18T00:00:00",
+        "lastAccessedAt": "2025-01-11T00:00:00"
+    },
+    {
+        "id": "2",
+        "name": "Work",
+        "color": "green",
+        "icon": "pajamas:work",
+        "tags": ["work", "projects"],
+        "notebooks": [
+            {
+                "id": "2",
+                "name": "Project Ideas",
+                "shade": 400,
+                "icon": "Lightbulb",
+                "tags": ["brainstorming"],
+                "notes": [
+                    {
+                        "id": "3",
+                        "name": "New App Concept",
+                        "content": "Develop a task management app with AI suggestions.",
+                        "notebooks": [],
+                        "createdAt": "2024-12-23T00:00:00",
+                        "updatedAt": "2025-01-02T00:00:00",
+                        "isStarred": true,
+                        "isArchived": false,
+                        "isDeleted": false
+                    }
+                ],
+                "isStarred": true,
+                "isArchived": false,
+                "isDeleted": false,
+                "libraryId": "2",
+                "createdAt": "2024-12-13T00:00:00",
+                "updatedAt": "2024-12-28T00:00:00",
+                "lastAccessedAt": "2025-01-10T00:00:00"
+            }
+        ],
+        "isStarred": true,
+        "isArchived": false,
+        "isDeleted": false,
+        "createdAt": "2024-12-03T00:00:00",
+        "updatedAt": "2024-12-23T00:00:00",
+        "lastAccessedAt": "2025-01-11T00:00:00"
+    },
+    {
+        "id": "2870",
+        "name": "Front-end Development",
+        "color": "blue",
+        "icon": "clarity:design-line",
+        "tags": ["development", "frontend", "code"],
+        "notebooks": [
+            {
+                "id": "1922",
+                "name": "React Projects",
+                "shade": 400,
+                "icon": "Code",
+                "tags": ["react", "javascript"],
+                "libraryId": "2870",
+                "notes": [
+                    {
+                        "id": "5947",
+                        "name": "State Management Options",
+                        "content": "Explore Zustand, Redux, and Context API for state management.",
+                        "tags": ["state", "management"],
+                        "notebooks": [],
+                        "isStarred": true,
+                        "isArchived": false,
+                        "isDeleted": false,
+                        "libraryId": "2",
+                        "createdAt": "2024-12-13T00:00:00",
+                        "updatedAt": "2024-12-28T00:00:00",
+                        "lastAccessedAt": "2025-01-10T00:00:00"
+                    },
+                    {
+                        "id": "7127",
+                        "name": "Component Design Patterns",
+                        "content": "Research container and presentational components.",
+                        "tags": ["design", "patterns"],
+                        "notebooks": [],
+                        "isStarred": true,
+                        "isArchived": false,
+                        "isDeleted": false,
+                        "libraryId": "2",
+                        "createdAt": "2024-12-13T00:00:00",
+                        "updatedAt": "2024-12-28T00:00:00",
+                        "lastAccessedAt": "2025-01-10T00:00:00"
+                    }
+                ],
+                "isStarred": true,
+                "isArchived": false,
+                "isDeleted": false,
+                "createdAt": "2024-12-13T00:00:00",
+                "updatedAt": "2024-12-28T00:00:00",
+                "lastAccessedAt": "2025-01-10T00:00:00"
+            },
+            {
+                "id": "5319",
+                "name": "CSS Frameworks",
+                "shade": 500,
+                "icon": "Brush",
+                "tags": ["css", "frameworks"],
+                "libraryId": "2870",
+                "notes": [
+                    {
+                        "id": "6575",
+                        "name": "Tailwind vs Bootstrap",
+                        "content": "Evaluate the pros and cons of TailwindCSS and Bootstrap.",
+                        "tags": ["tailwind", "bootstrap"],
+                        "notebooks": [],
+                        "isStarred": true,
+                        "isArchived": false,
+                        "isDeleted": false,
+                        "libraryId": "2",
+                        "createdAt": "2024-12-13T00:00:00",
+                        "updatedAt": "2024-12-28T00:00:00",
+                        "lastAccessedAt": "2025-01-10T00:00:00"
+                    }
+                ],
+                "isStarred": true,
+                "isArchived": false,
+                "isDeleted": false,
+                "createdAt": "2024-12-13T00:00:00",
+                "updatedAt": "2024-12-28T00:00:00",
+                "lastAccessedAt": "2025-01-10T00:00:00"
+            }
+        ],
+        "isStarred": true,
+        "isArchived": false,
+        "isDeleted": false,
+        "createdAt": "2024-12-13T00:00:00",
+        "updatedAt": "2024-12-18T00:00:00",
+        "lastAccessedAt": "2025-01-11T00:00:00"
+    },
+    {
+        "id": "8458",
+        "name": "Basement Renovation",
+        "color": "pink",
+        "icon": "ri:hammer-fill",
+        "tags": ["renovation", "home"],
+        "notebooks": [
+            {
+                "id": "8093",
+                "name": "Material Costs",
+                "shade": 600,
+                "icon": "DollarSign",
+                "tags": ["materials", "budget"],
+                "libraryId": "8458",
+                "notes": [
+                    {
+                        "id": "1403",
+                        "name": "Drywall Pricing",
+                        "content": "Compare drywall prices across suppliers.",
+                        "tags": ["drywall", "pricing"],
+                        "notebooks": [],
+                        "isStarred": true,
+                        "isArchived": false,
+                        "isDeleted": false,
+                        "libraryId": "2",
+                        "createdAt": "2024-12-13T00:00:00",
+                        "updatedAt": "2024-12-28T00:00:00",
+                        "lastAccessedAt": "2025-01-10T00:00:00"
+                    },
+                    {
+                        "id": "4758",
+                        "name": "Flooring Options",
+                        "content": "Consider vinyl and hardwood for the basement flooring.",
+                        "tags": ["flooring", "options"],
+                        "notebooks": [],
+                        "isStarred": true,
+                        "isArchived": false,
+                        "isDeleted": false,
+                        "libraryId": "2",
+                        "createdAt": "2024-12-13T00:00:00",
+                        "updatedAt": "2024-12-28T00:00:00",
+                        "lastAccessedAt": "2025-01-10T00:00:00"
+                    }
+                ],
+                "isStarred": true,
+                "isArchived": false,
+                "isDeleted": false,
+                "createdAt": "2024-12-13T00:00:00",
+                "updatedAt": "2024-12-28T00:00:00",
+                "lastAccessedAt": "2025-01-10T00:00:00"
+            }
+        ],
+        "isStarred": false,
+        "isArchived": false,
+        "isDeleted": false,
+        "createdAt": "2024-12-13T00:00:00",
+        "updatedAt": "2024-12-18T00:00:00",
+        "lastAccessedAt": "2025-01-11T00:00:00"
+    },
+    {
+        "id": "1716",
+        "name": "Fitness",
+        "color": "green",
+        "icon": "mingcute:fitness-line",
+        "tags": ["health", "workout"],
+        "notebooks": [
+            {
+                "id": "2936",
+                "name": "Workout Routines",
+                "shade": 300,
+                "icon": "Dumbbell",
+                "tags": ["exercise", "routine"],
+                "libraryId": "1716",
+                "notes": [
+                    {
+                        "id": "2038",
+                        "name": "5-Day Split Plan",
+                        "content": "Create a 5-day split workout plan targeting major muscle groups.",
+                        "tags": ["workout", "plan"],
+                        "notebooks": [],
+                        "isStarred": true,
+                        "isArchived": false,
+                        "isDeleted": false,
+                        "libraryId": "2",
+                        "createdAt": "2024-12-13T00:00:00",
+                        "updatedAt": "2024-12-28T00:00:00",
+                        "lastAccessedAt": "2025-01-10T00:00:00"
+                    }
+                ],
+                "isStarred": false,
+                "isArchived": false,
+                "isDeleted": false,
+                "createdAt": "2024-12-13T00:00:00",
+                "updatedAt": "2024-12-18T00:00:00",
+                "lastAccessedAt": "2025-01-11T00:00:00"
+            },
+            {
+                "id": "4948",
+                "name": "Diet Plans",
+                "shade": 400,
+                "icon": "Apple",
+                "tags": ["nutrition", "diet"],
+                "libraryId": "1716",
+                "notes": [
+                    {
+                        "id": "3872",
+                        "name": "High-Protein Meals",
+                        "content": "List of high-protein meals for muscle building.",
+                        "tags": ["protein", "meals"],
+                        "notebooks": [],
+                        "isStarred": true,
+                        "isArchived": false,
+                        "isDeleted": false,
+                        "libraryId": "2",
+                        "createdAt": "2024-12-13T00:00:00",
+                        "updatedAt": "2024-12-28T00:00:00",
+                        "lastAccessedAt": "2025-01-10T00:00:00"
+                    }
+                ],
+                "isStarred": true,
+                "isArchived": false,
+                "isDeleted": false,
+                "createdAt": "2024-12-13T00:00:00",
+                "updatedAt": "2024-12-18T00:00:00",
+                "lastAccessedAt": "2025-01-11T00:00:00"
+            }
+        ],
+        "isStarred": true,
+        "isArchived": false,
+        "isDeleted": false,
+        "createdAt": "2024-12-13T00:00:00",
+        "updatedAt": "2024-12-18T00:00:00",
+        "lastAccessedAt": "2025-01-11T00:00:00"
+    }
+]
