@@ -17,7 +17,7 @@ export default function MainHeaderPanel() {
                 'pointer-events-none': !isVisible,
             })}
         >
-            <div className="flex-1 flex flex-col shadow-sm rounded dark:shadow-md h-full w-full border-2">
+            <div className="flex-1 flex flex-col shadow-sm rounded dark:shadow-md h-full w-full">
                 <TabsList />
                 <PanelContent />
             </div>

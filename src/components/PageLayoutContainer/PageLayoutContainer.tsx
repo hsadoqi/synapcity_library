@@ -63,7 +63,7 @@ export default function PageLayoutContainer({
 
     return (
         <div className="size-full flex flex-col relative overflow-none">
-            <div className="h-54 w-full shadow-md flex flex-col justify-center items-start z-30">
+            <div className="h-54 w-full shadow-md flex flex-col justify-center items-start z-0">
                 <BreadcrumbMenu labels={labels} />
                 <EditableHeader data={data} />
             </div>

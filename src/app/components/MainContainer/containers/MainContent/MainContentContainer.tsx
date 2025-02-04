@@ -40,10 +40,9 @@ export default function MainContentContainer({
     return (
         <div
             className={clsx(
-                'main-container flex flex-col h-full w-full relative',
+                'main-container flex flex-col h-full w-full relative transition-all duration-1000 ease-in-out',
                 {
                     'pt-0 delay-300': !isVisible,
-                    'pt-12': isVisible,
                 },
             )}
         >
@@ -53,7 +52,7 @@ export default function MainContentContainer({
                     ref={mainContainerRef}
                     id="main-content-container"
                     className={clsx(
-                        'shadow-md hover:shadow-lg scroll-y-container relative flex flex-col flex-1 w-full h-full',
+                        'shadow-md hover:shadow-lg scroll-y-container relative flex flex-col flex-1 w-full h-full border-b border-active-700',
                     )}
                 >
                     {children}
