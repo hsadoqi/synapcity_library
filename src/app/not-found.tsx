@@ -15,7 +15,7 @@ export default async function NotFound() {
         <div className="h-full w-full flex flex-col items-center justify-center">
             <h2>Not Found: {fullUrl}</h2>
             <p>Could not find requested resource</p>
-            <LinkButton link="Return Home" href="/" />
+            <LinkButton label="Return Home" href="/" />
         </div>
     )
 }

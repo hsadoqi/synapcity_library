@@ -1,18 +1,21 @@
-import { MainNavigationMenu, MainHeaderMenu, HoverWrapper } from './containers'
-import { HomeLink, PanelButton } from './components'
+'use client'
 
+import { useHeaderStore } from '@/stores/header-store'
+import { HoverWrapper } from './containers'
+import MainNavigationContainer from './containers/MainNavigationContainer/MainNavigationContainer'
+import clsx from 'clsx'
 export default function MainHeader() {
+    const { isVisible } = useHeaderStore()
     return (
-        <header className="header-container">
+        <header
+            className={clsx('header-container', {
+                'absolute h-4 z-10 transition-all duration-300 ease-in-out opacity-0':
+                    !isVisible,
+                'opacity-100': isVisible,
+            })}
+        >
             <HoverWrapper>
-                <nav className="w-full h-full flex justify-between items-center px-4 shadow-sm">
-                    <div className="flex items-center justify-between gap-2 p-2">
-                        <HomeLink />
-                        <PanelButton />
-                    </div>
-                    <MainNavigationMenu />
-                    <MainHeaderMenu />
-                </nav>
+                <MainNavigationContainer />
             </HoverWrapper>
         </header>
     )

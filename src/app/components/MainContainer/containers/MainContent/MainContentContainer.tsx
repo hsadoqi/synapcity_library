@@ -4,6 +4,7 @@ import clsx from 'clsx'
 import { MainHeaderPanel } from '../../../MainHeader/containers'
 import { useTabStore } from '@/stores/tab-store'
 import { useRef, useEffect, Suspense } from 'react'
+import { useHeaderStore } from '@/stores/header-store'
 
 export default function MainContentContainer({
     children,
@@ -11,6 +12,7 @@ export default function MainContentContainer({
     children: React.ReactNode
 }) {
     const { togglePanel, isPanelVisible } = useTabStore()
+    const { isVisible } = useHeaderStore()
     const mainContainerRef = useRef<HTMLDivElement | null>(null)
 
     useEffect(() => {
@@ -36,25 +38,26 @@ export default function MainContentContainer({
     }, [isPanelVisible, togglePanel])
 
     return (
-        <div className={'main-container'}>
-            <div
-                className={clsx(
-                    'main-container',
-                    'p-0 shadow-md hover:shadow-lg',
-                )}
-            >
-                <MainHeaderPanel />
-                <Suspense fallback={<div>Loading...</div>}>
-                    <div
-                        ref={mainContainerRef}
-                        className={clsx(
-                            'shadow-md hover:shadow-lg scroll-y-container',
-                        )}
-                    >
-                        {children}
-                    </div>
-                </Suspense>
-            </div>
+        <div
+            className={clsx(
+                'main-container flex flex-col h-full w-full relative transition-all duration-1000 ease-in-out',
+                {
+                    'pt-0 delay-300': !isVisible,
+                },
+            )}
+        >
+            <MainHeaderPanel />
+            <Suspense fallback={<div>Loading...</div>}>
+                <div
+                    ref={mainContainerRef}
+                    id="main-content-container"
+                    className={clsx(
+                        'shadow-md hover:shadow-lg scroll-y-container relative flex flex-col flex-1 w-full h-full border-b border-active-700',
+                    )}
+                >
+                    {children}
+                </div>
+            </Suspense>
         </div>
     )
 }
