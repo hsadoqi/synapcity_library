@@ -5,13 +5,14 @@ import { Sidebar } from '@/components/ui/sidebar'
 import { SidebarHeader } from './LibrarySidebarHeader'
 import { SidebarContent } from './LibrarySidebarContent'
 import { ExtendedLibrarySidebar } from '../ExtendedLibrarySidebar'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useLibraryStore } from '@/stores/library-store'
 
 export default function LibrarySidebar({
     ...props
 }: React.ComponentProps<typeof Sidebar>) {
     const { loadLibraries } = useLibraryStore()
+    const sidebarRef = useRef<HTMLDivElement | null>(null)
 
     useEffect(() => {
         loadLibraries()
@@ -25,8 +26,9 @@ export default function LibrarySidebar({
             {...props}
         >
             <Sidebar
+                ref={sidebarRef}
                 collapsible="none"
-                className="!w-[calc(var(--sidebar-width-icon)_+_1px)] shadow-inner pt-4"
+                className="!w-[calc(var(--sidebar-width-icon)_+_1px)] border-y border-active-50 dark:border-active-950 shadow-md pt-4"
             >
                 <SidebarHeader />
                 <SidebarContent />

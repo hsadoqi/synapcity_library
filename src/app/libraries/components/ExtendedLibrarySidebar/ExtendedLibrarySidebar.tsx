@@ -6,7 +6,7 @@ export default function ExtendedLibrarySidebar() {
     return (
         <Sidebar
             collapsible="none"
-            className="hidden flex-1 sm:flex border-x-[1px] border-active-700"
+            className="hidden flex-1 sm:flex border-b border-active-700"
         >
             <ExtendedLibraryHeader />
             <ExtendedLibraryContent />

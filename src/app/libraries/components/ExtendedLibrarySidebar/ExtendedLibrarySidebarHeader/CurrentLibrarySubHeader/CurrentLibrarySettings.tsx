@@ -7,15 +7,17 @@ export default function CurrentLibrarySettings({
     library,
 }: {
     show: boolean
-    library: Partial<Library>
+    library?: Partial<Library>
 }) {
     return (
-        <SettingsModal
-            show={show}
-            title={library.name || 'Untitled Library'}
-            description="Edit the current library's settings and data."
-        >
-            <LibraryForm defaultValues={library} />
-        </SettingsModal>
+        library && (
+            <SettingsModal
+                show={show}
+                title={library?.name || 'Untitled Library'}
+                description="Edit the current library's settings and data."
+            >
+                <LibraryForm defaultValues={library} />
+            </SettingsModal>
+        )
     )
 }

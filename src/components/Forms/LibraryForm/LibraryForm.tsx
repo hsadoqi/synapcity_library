@@ -45,7 +45,7 @@ const tailwindColors = [
 
 const librarySchema = z.object({
     name: z.string().min(1, 'Name is required'),
-    color: z.enum(tailwindColors),
+    color: z.string(),
     icon: z.string(),
     tags: z.array(z.string()),
     isStarred: z.boolean(),
@@ -61,14 +61,13 @@ const librarySchema = z.object({
 type LibraryFormValues = z.infer<typeof librarySchema>
 
 type LibraryFormProps = {
-    defaultValues?: Partial<LibraryFormValues>
+    defaultValues?: Partial<Library>
 }
 
 export default function LibraryForm({ defaultValues }: LibraryFormProps) {
     const { updateLibrary, selectedLibrary } = useLibraryStore()
-    const [currentValues, setCurrentValues] = useState<
-        Partial<LibraryFormValues>
-    >(defaultValues || {})
+    const [currentValues, setCurrentValues] =
+        useState<Partial<LibraryFormValues | undefined>>(defaultValues)
 
     const {
         register,
@@ -80,7 +79,7 @@ export default function LibraryForm({ defaultValues }: LibraryFormProps) {
         defaultValues,
     })
 
-    const onSubmit = (data: Partial<LibraryFormValues>) => {
+    const onSubmit = (data: Partial<LibraryFormValues | undefined>) => {
         console.log('before', data, currentValues, selectedLibrary)
         updateLibrary(data as Partial<Library>)
         console.log('after', data, currentValues, selectedLibrary)

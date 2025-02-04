@@ -15,15 +15,17 @@ export default function ExtendedLibrarySidebarItem({
     className?: string
     notebook: Notebook
 }) {
-    const { libraries, setLibrary, selectedLibrary } = useLibraryStore()
+    const { libraries, setLibrary, selectedLibrary, setDefaultLibrary } =
+        useLibraryStore()
     const [badgeStyles, setBadgeStyles] = useState('')
     const { setNotebook, selectedNotebook } = useNotebookStore()
-    const foundLibrary = libraries.find((lib) => lib.id === notebook.libraryId)
+    const allLibIds = notebook.libraries.map((lib) => lib.id)
+    const foundLibrary = libraries.find((lib) => allLibIds.includes(lib.id))
 
     useEffect(() => {
         if (foundLibrary) {
             const color = foundLibrary.color
-            const styles = `cursor-pointer hover:shadow-sm bg-${color}-100 dark:bg-${color}-900 hover:bg-${color}-50 dark:hover:bg-${color}-900 z-50 absolute top-2 right-2`
+            const styles = `font-extralight cursor-pointer hover:shadow-sm bg-${color}-100 dark:bg-${color}-900 hover:bg-${color}-50 dark:hover:bg-${color}-900 z-50 absolute top-2 right-2`
             setBadgeStyles(styles)
         }
     }, [foundLibrary])
@@ -40,8 +42,7 @@ export default function ExtendedLibrarySidebarItem({
             )}
         >
             <Link
-                href={`/libraries/${notebook?.libraryId}/notebooks/${notebook?.id}`}
-                onClick={() => setNotebook(notebook)}
+                href={`/libraries/${(foundLibrary || selectedLibrary)?.id}/${notebook?.id}`}
                 className="inset-0 h-full w-full"
             >
                 <div className="flex flex-col items-start gap-2 h-full w-full justify-between">
@@ -56,7 +57,11 @@ export default function ExtendedLibrarySidebarItem({
                     variant="outline"
                     className={badgeStyles}
                     onClick={() => {
-                        setLibrary(foundLibrary!)
+                        if (foundLibrary) {
+                            setLibrary(foundLibrary)
+                        } else {
+                            setDefaultLibrary()
+                        }
                         setNotebook(notebook)
                     }}
                 >

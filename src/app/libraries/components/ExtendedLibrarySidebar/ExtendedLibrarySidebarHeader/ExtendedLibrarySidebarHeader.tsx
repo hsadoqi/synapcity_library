@@ -34,20 +34,20 @@ export default function ExtendedLibrarySidebarHeader() {
     return (
         <SidebarHeader
             className={clsx(
-                'border-b-[1px] border-active-700 bg-active-200 dark:bg-black/80 pt-4',
+                'border-b border-active-700 bg-active-200 dark:bg-black/80',
                 {
-                    'pt-6': isHeaderVisible,
+                    'px-2 py-3': isHeaderVisible,
                 },
             )}
         >
-            <div className="flex flex-col w-full h-full items-center justify-between overflow-hidden">
+            <div className="flex flex-col w-full items-center justify-between overflow-hidden">
                 <CurrentLibrarySubHeader
                     toggleSearch={toggleSearch}
                     toggleOpen={toggleOpen}
                     isOpen={isOpen}
                 />
                 <div
-                    className={`transition-all duration-300 ease-in-out overflow-y-auto scrollbar-sm w-full shadow-inner rounded-b-md scale-95 ${
+                    className={`transition-all duration-300 ease-in-out overflow-y-auto scroll-hide overscroll-contain w-full shadow-inner rounded-b-md scale-95 ${
                         isOpen
                             ? 'max-h-28 opacity-100 visible'
                             : 'max-h-0 opacity-0 invisible'
