@@ -3,15 +3,10 @@
 import { Search } from 'lucide-react'
 import { Button } from '../ui'
 import clsx from 'clsx'
-import { SearchNotebooksInput } from './SearchInput'
-import { useRef, useState, useEffect } from 'react'
+import { SearchInput } from './SearchInput'
+import { useRef, useState, useEffect, useCallback } from 'react'
 
-export default function FloatingSearch({
-    variant = 'ghost',
-    className = '',
-    notebooks = false,
-    notes = false,
-}: {
+interface FloatingSearchProps {
     variant?:
         | 'default'
         | 'ghost'
@@ -21,15 +16,24 @@ export default function FloatingSearch({
         | 'secondary'
         | 'inner'
         | 'link'
-        | null
-        | undefined
     className?: string
-    notebooks?: boolean
-    notes?: boolean
-}) {
+    filterData: (searchQuery: string) => void
+    resetFilters: () => void
+}
+
+export default function FloatingSearch({
+    variant = 'ghost',
+    className = '',
+    ...props
+}: FloatingSearchProps) {
     const wrapperRef = useRef<HTMLDivElement | null>(null)
     const searchRef = useRef<HTMLInputElement | null>(null)
     const [showSearch, setShowSearch] = useState(false)
+
+    const toggleSearch = useCallback(
+        (value?: boolean) => setShowSearch((prev) => value || !prev),
+        [],
+    )
 
     useEffect(() => {
         if (showSearch && searchRef.current) {
@@ -41,45 +45,43 @@ export default function FloatingSearch({
         const handleClickOutside = (e: MouseEvent) => {
             if (
                 wrapperRef.current &&
-                !wrapperRef.current.contains(e.target as Node)
+                !wrapperRef.current.contains(e.target as Node) &&
+                showSearch
             ) {
-                console.log('show search', showSearch)
-                setShowSearch(false)
-                console.log('show search after', showSearch)
+                toggleSearch(false)
             }
         }
 
         document.addEventListener('mousedown', handleClickOutside)
         return () =>
             document.removeEventListener('mousedown', handleClickOutside)
-    }, [showSearch])
-
-    const toggleSearch = () => {
-        setShowSearch((prev) => !prev)
-    }
+    }, [showSearch, toggleSearch])
 
     return (
         <div
             ref={wrapperRef}
-            className="inline-flex items-center justify-around w-full py-1"
+            className="flex flex-col items-center justify-around w-full py-1 relative"
         >
-            <Button
-                onClick={() => toggleSearch()}
-                variant={variant}
-                size="icon"
-                className={clsx(
-                    'absolute top-50 right-2 bg-transparent hover:text-active-500 hover:bg-transparent border-none hover:scale-125 transition-transform duration-300 ease-in-out z-50',
-                    className,
-                )}
+            <div
+                className={clsx({
+                    'absolute top-0 right-2 translate-all duration-500 delay-300 ease-linear':
+                        showSearch,
+                })}
             >
-                <Search />
-            </Button>
-            <SearchNotebooksInput
-                ref={searchRef}
-                show={showSearch}
-                notebooks={notebooks}
-                notes={notes}
-            />
+                <Button
+                    onClick={() => toggleSearch()}
+                    variant={variant}
+                    size="icon"
+                    className={clsx(
+                        'absolute top-50 right-2 bg-transparent hover:text-active-500 hover:bg-transparent border-none hover:scale-125 transition-transform duration-300 ease-in-out z-50',
+                        'inline-flex items-center justify-around w-full py-1',
+                        className,
+                    )}
+                >
+                    <Search />
+                </Button>
+            </div>
+            <SearchInput show={showSearch} ref={searchRef} {...props} />
         </div>
     )
 }

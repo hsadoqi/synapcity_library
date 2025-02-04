@@ -1,1 +1,2 @@
-export { default as SearchNotebooksInput } from './SearchInput'
+export { default as SearchInput } from './SearchInput'
+export * from './SearchInput'
