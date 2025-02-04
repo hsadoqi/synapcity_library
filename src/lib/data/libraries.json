@@ -15,7 +15,7 @@
                 "notes": [
                     {
                         "id": "1",
-                        "title": "Vacation to Italy",
+                        "name": "Vacation to Italy",
                         "content": "Pack bags, book tickets, and plan itinerary.",
                         "notebooks": [],
                         "createdAt": "2024-12-13T00:00:00",
@@ -27,7 +27,7 @@
                     },
                     {
                         "id": "2",
-                        "title": "Camping Gear Checklist",
+                        "name": "Camping Gear Checklist",
                         "content": "Tent, sleeping bags, food supplies, and first aid kit.",
                         "notebooks": [],
                         "createdAt": "2024-12-13T00:00:00",
@@ -70,7 +70,7 @@
                 "notes": [
                     {
                         "id": "3",
-                        "title": "New App Concept",
+                        "name": "New App Concept",
                         "content": "Develop a task management app with AI suggestions.",
                         "notebooks": [],
                         "createdAt": "2024-12-23T00:00:00",
@@ -113,7 +113,7 @@
                 "notes": [
                     {
                         "id": "5947",
-                        "title": "State Management Options",
+                        "name": "State Management Options",
                         "content": "Explore Zustand, Redux, and Context API for state management.",
                         "tags": ["state", "management"],
                         "notebooks": [],
@@ -127,7 +127,7 @@
                     },
                     {
                         "id": "7127",
-                        "title": "Component Design Patterns",
+                        "name": "Component Design Patterns",
                         "content": "Research container and presentational components.",
                         "tags": ["design", "patterns"],
                         "notebooks": [],
@@ -157,7 +157,7 @@
                 "notes": [
                     {
                         "id": "6575",
-                        "title": "Tailwind vs Bootstrap",
+                        "name": "Tailwind vs Bootstrap",
                         "content": "Evaluate the pros and cons of TailwindCSS and Bootstrap.",
                         "tags": ["tailwind", "bootstrap"],
                         "notebooks": [],
@@ -202,7 +202,7 @@
                 "notes": [
                     {
                         "id": "1403",
-                        "title": "Drywall Pricing",
+                        "name": "Drywall Pricing",
                         "content": "Compare drywall prices across suppliers.",
                         "tags": ["drywall", "pricing"],
                         "notebooks": [],
@@ -216,7 +216,7 @@
                     },
                     {
                         "id": "4758",
-                        "title": "Flooring Options",
+                        "name": "Flooring Options",
                         "content": "Consider vinyl and hardwood for the basement flooring.",
                         "tags": ["flooring", "options"],
                         "notebooks": [],
@@ -261,7 +261,7 @@
                 "notes": [
                     {
                         "id": "2038",
-                        "title": "5-Day Split Plan",
+                        "name": "5-Day Split Plan",
                         "content": "Create a 5-day split workout plan targeting major muscle groups.",
                         "tags": ["workout", "plan"],
                         "notebooks": [],
@@ -291,7 +291,7 @@
                 "notes": [
                     {
                         "id": "3872",
-                        "title": "High-Protein Meals",
+                        "name": "High-Protein Meals",
                         "content": "List of high-protein meals for muscle building.",
                         "tags": ["protein", "meals"],
                         "notebooks": [],

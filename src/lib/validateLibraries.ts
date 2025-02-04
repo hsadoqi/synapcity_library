@@ -17,13 +17,6 @@ const transformedLibraries: Library[] = (
     createdAt: new Date(library.createdAt),
     updatedAt: new Date(library.updatedAt),
     lastAccessedAt: new Date(library.lastAccessedAt),
-    notebooks: library.notebooks.map((notebook) => ({
-        ...notebook,
-        createdAt: new Date(notebook.createdAt),
-        updatedAt: new Date(notebook.updatedAt),
-        lastAccessedAt: new Date(notebook.lastAccessedAt),
-        notes: notebook.notes || [],
-    })),
 }))
 
 export default transformedLibraries

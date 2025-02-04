@@ -1,0 +1,96 @@
+[
+    {
+        "id": "note-1",
+        "name": "Vacation to Italy",
+        "description": "Pack bags, book tickets, and plan itinerary.",
+        "content": "Content for my vacation in italy...",
+        "icon": "streamline-emojis:italy",
+        "tags": ["camping", "tents"],
+        "isStarred": true,
+        "isArchived": false,
+        "isDeleted": false,
+        "createdAt": "2024-12-13T00:00:00",
+        "updatedAt": "2024-12-18T00:00:00",
+        "lastAccessedAt": "2025-01-11T00:00:00",
+        "notebooks": [
+            {
+                "id": "notebook-2",
+                "name": "Travel Plans",
+                "shade": 500
+            },
+            {
+                "id": "notebook-3",
+                "name": "Brainstorm",
+                "shade": 500
+            }
+        ]
+    },
+    {
+        "id": "note-2",
+        "name": "Camping Gear Checklist",
+        "description": "Tent, sleeping bags, food supplies, and first aid kit.",
+        "content": "Content for camping gear checklist...",
+        "icon": "tabler:tent",
+        "tags": ["camping", "tents"],
+        "isStarred": false,
+        "isArchived": false,
+        "isDeleted": false,
+        "createdAt": "2024-12-13T00:00:00",
+        "updatedAt": "2024-12-18T00:00:00",
+        "lastAccessedAt": "2025-01-11T00:00:00",
+        "notebooks": [
+            {
+                "id": "notebook-2",
+                "name": "Travel Plans",
+                "shade": 500
+            },
+            {
+                "id": "notebook-3",
+                "name": "Brainstorm",
+                "shade": 500
+            }
+        ]
+    },
+    {
+        "id": "note-3",
+        "name": "Project Ideas",
+        "description": "",
+        "content": "Content for Project ideas...",
+        "icon": "material-symbols:lightbulb",
+        "tags": ["projects", "ideas"],
+        "isStarred": false,
+        "isArchived": false,
+        "isDeleted": false,
+        "createdAt": "2024-12-13T00:00:00",
+        "updatedAt": "2024-12-18T00:00:00",
+        "lastAccessedAt": "2025-01-11T00:00:00",
+        "notebooks": [
+            {
+                "id": "notebook-3",
+                "name": "Brainstorm",
+                "shade": 500
+            }
+        ]
+    },
+    {
+        "id": "note-4",
+        "name": "Yoga Techniques",
+        "description": "",
+        "content": "Content for Yoga Techniquess...",
+        "icon": "mdi:yoga",
+        "tags": ["yoga", "exercise", "techniques"],
+        "isStarred": false,
+        "isArchived": false,
+        "isDeleted": false,
+        "createdAt": "2024-12-13T00:00:00",
+        "updatedAt": "2024-12-18T00:00:00",
+        "lastAccessedAt": "2025-01-11T00:00:00",
+        "notebooks": [
+            {
+                "id": "notebook-4",
+                "name": "Workout Routines",
+                "shade": 500
+            }
+        ]
+    }
+]

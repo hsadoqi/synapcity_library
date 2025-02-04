@@ -1,0 +1,145 @@
+[
+    {
+        "id": "notebook-123",
+        "name": "Master Notebook",
+        "shade": 500,
+        "icon": "Combine",
+        "tags": [],
+        "isStarred": false,
+        "isArchived": false,
+        "isDeleted": false,
+        "createdAt": "2024-12-23T00:00:00",
+        "updatedAt": "2024-12-25T00:00:00",
+        "lastAccessedAt": "2025-01-09T00:00:00",
+        "notes": [
+            {
+                "id": "note-1",
+                "name": "Vacation to Italy",
+                "description": "Pack bags, book tickets, and plan itinerary.",
+                "icon": "streamline-emojis:italy",
+                "tags": ["camping", "tents"]
+            },
+            {
+                "id": "note-2",
+                "name": "Camping Gear Checklist",
+                "description": "Tent, sleeping bags, food supplies, and first aid kit.",
+                "icon": "tabler:tent",
+                "tags": ["camping", "tents"]
+            }
+        ],
+        "libraries": [
+            {
+                "id": "library-123",
+                "name": "Master Library",
+                "color": "neutral",
+                "icon": "Combine",
+                "tags": []
+            }
+        ],
+        "default": true
+    },
+    {
+        "id": "notebook-2",
+        "name": "Travel Plans",
+        "shade": 500,
+        "icon": "mdi:pen",
+        "tags": ["travel"],
+        "isStarred": false,
+        "isArchived": false,
+        "isDeleted": false,
+        "createdAt": "2024-12-23T00:00:00",
+        "updatedAt": "2024-12-25T00:00:00",
+        "lastAccessedAt": "2025-01-09T00:00:00",
+        "notes": [
+            {
+                "id": "note-1",
+                "name": "Vacation to Italy",
+                "description": "Pack bags, book tickets, and plan itinerary.",
+                "icon": "streamline-emojis:italy",
+                "tags": ["camping", "tents"]
+            },
+            {
+                "id": "note-2",
+                "name": "Camping Gear Checklist",
+                "description": "Tent, sleeping bags, food supplies, and first aid kit.",
+                "icon": "tabler:tent",
+                "tags": ["camping", "tents"]
+            }
+        ],
+        "libraries": [
+            {
+                "id": "library-1",
+                "name": "Personal",
+                "color": "blue",
+                "icon": "basil:book-outline",
+                "tags": ["important", "personal"]
+            }
+        ],
+        "default": false
+    },
+    {
+        "id": "notebook-3",
+        "name": "Brainstorm",
+        "shade": 500,
+        "icon": "mdi:brain",
+        "tags": ["ideas", "thoughts"],
+        "isStarred": false,
+        "isArchived": false,
+        "isDeleted": false,
+        "createdAt": "2024-12-23T00:00:00",
+        "updatedAt": "2024-12-25T00:00:00",
+        "lastAccessedAt": "2025-01-09T00:00:00",
+        "notes": [
+            {
+                "id": "note-3",
+                "name": "Project Ideas",
+                "description": "",
+                "content": "Content for Project ideas...",
+                "icon": "material-symbols:lightbulb",
+                "tags": ["projects", "ideas"]
+            }
+        ],
+        "libraries": [
+            {
+                "id": "library-1",
+                "name": "Personal",
+                "color": "blue",
+                "icon": "basil:book-outline",
+                "tags": ["important", "personal"]
+            }
+        ],
+        "default": false
+    },
+    {
+        "id": "notebook-4",
+        "name": "Workout Routines",
+        "shade": 500,
+        "icon": "lucide-lab:sneaker",
+        "tags": ["gym", "routine"],
+        "isStarred": false,
+        "isArchived": false,
+        "isDeleted": false,
+        "createdAt": "2024-12-23T00:00:00",
+        "updatedAt": "2024-12-25T00:00:00",
+        "lastAccessedAt": "2025-01-09T00:00:00",
+        "notes": [
+            {
+                "id": "note-4",
+                "name": "Yoga Techniques",
+                "description": "Techniques for yoga...",
+                "icon": "mdi:yoga",
+                "tags": ["yoga", "exercise", "techniques"]
+            }
+        ],
+        "libraries": [
+            {
+                "id": "library-2",
+                "name": "Fitness",
+                "color": "indigo",
+                "icon": "mingcute:fitness-line",
+                "tags": ["health", "gym"]
+            }
+        ],
+        "default": false
+    }
+]

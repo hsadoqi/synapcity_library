@@ -1,60 +1,27 @@
 import { createStore, StoreApi, useStore } from 'zustand'
 import { subscribeWithSelector } from 'zustand/middleware'
-import { Library, Notebook, Note } from '@/types/libraryData'
-import { Color, ColorShade } from '@/types/styling'
-import transformedLibraries from '@/lib/validateLibraries'
+import {
+    Library,
+    libraryData,
+    notebooksData,
+    defaultLibrary,
+} from '@/types/libraryData'
+import { ColorShade } from '@/types/styling'
 import { notebookStore } from './notebook-store'
 import colors from 'tailwindcss/colors'
-
-export type DefaultNotebookType = Notebook & { default: boolean }
-
-const defaultNotebook: Notebook & { default: boolean } = {
-    id: '0',
-    name: 'Master Notebook',
-    shade: 500,
-    icon: 'Combine',
-    tags: [],
-    notes: [] as Note[],
-    isStarred: false,
-    isArchived: false,
-    isDeleted: false,
-    default: true,
-    libraryId: '0',
-    createdAt: new Date('2025-01-02'),
-    updatedAt: new Date('2025-01-04'),
-    lastAccessedAt: new Date('2025-01-10'),
-}
-
-const defaultLibrary: Library & { default: boolean } = {
-    id: '0',
-    name: 'Master Library',
-    color: 'neutral' as Color,
-    icon: 'Combine' as string,
-    tags: [],
-    notebooks: [
-        defaultNotebook,
-        ...transformedLibraries.flatMap((library) => library.notebooks),
-    ],
-    isStarred: false,
-    isArchived: false,
-    isDeleted: false,
-    default: true,
-    createdAt: new Date('2025-01-02'),
-    updatedAt: new Date('2025-01-04'),
-    lastAccessedAt: new Date('2025-01-10'),
-}
 
 export type LibraryState = {
     libraries: Library[]
     filteredLibraries: Library[]
     selectedLibrary: Library | null
-    defaultLibrary: Library
+    defaultLibrary?: Library
     isSidebarOpen: boolean
 }
 
 export type LibraryActions = {
     setLibrary: (library: Library) => void
     setActiveLibraryById: (libraryId: string) => void
+    setDefaultLibrary: () => void
     loadLibraries: (libraries?: Library[]) => void
     filterLibraries: (searchQuery: string) => void
     addLibrary: (library: Library) => void
@@ -77,7 +44,8 @@ export const libraryStore = createStore<LibraryStore>()(
         filteredLibraries: [],
         selectedLibrary: null,
         defaultLibrary,
-        setLibrary: (library: Library) => set({ selectedLibrary: library }),
+        setLibrary: (library: Library | null) =>
+            set({ selectedLibrary: library }),
         setActiveLibraryById: (libraryId: string) => {
             set((state) => {
                 if (state.libraries) {
@@ -90,32 +58,26 @@ export const libraryStore = createStore<LibraryStore>()(
                 }
             })
         },
-        loadLibraries: (libraries) => {
+        setDefaultLibrary: () => set({ selectedLibrary: defaultLibrary }),
+        loadLibraries: (libraries?: Library[]) =>
             set((state) => {
-                if (!libraries) {
-                    const updatedLibraries = [
-                        defaultLibrary,
-                        ...transformedLibraries,
-                    ]
-                    const notebooks = [...defaultLibrary.notebooks]
+                let updatedLibraries: Library[]
 
-                    if (!state.selectedLibrary) {
-                        notebookStore.getState().loadNotebooks(notebooks)
-                    }
-
-                    return {
-                        libraries: updatedLibraries,
-                        defaultLibrary: {
-                            ...defaultLibrary,
-                            notebooks,
-                        },
-                        filteredLibraries: updatedLibraries,
-                    }
+                if (libraries) {
+                    updatedLibraries = libraries
+                } else {
+                    updatedLibraries = libraryData
                 }
+                return {
+                    libraries: updatedLibraries,
+                    filteredLibraries: updatedLibraries,
+                    selectedLibrary:
+                        state.selectedLibrary ??
+                        updatedLibraries.find((library) => library.default) ??
+                        defaultLibrary,
+                }
+            }),
 
-                return state // Ensure function always returns state
-            })
-        },
         filterLibraries: (searchQuery: string) => {
             set((state) => {
                 if (!searchQuery) {
@@ -209,18 +171,29 @@ export const useLibraryStore = createBoundedUseStore(libraryStore)
 libraryStore.subscribe(
     (state) => state.selectedLibrary,
     (selectedLibrary) => {
-        const { libraries } = libraryStore.getState()
-        console.log('subscribe actions', selectedLibrary, libraries)
         if (selectedLibrary) {
+            const { selectedLibrary } = libraryStore.getState()
+            const { setNotebook, loadNotebooks } = notebookStore.getState()
+            const notebookIds = selectedLibrary?.notebooks?.map(
+                (notebook) => notebook.id,
+            )
+            const notebooks = notebooksData.filter((notebook) =>
+                notebookIds?.includes(notebook.id),
+            )
             const selectedNotebook = notebookStore.getState().selectedNotebook
-            if (!selectedNotebook) {
-                notebookStore
-                    .getState()
-                    .setNotebook(selectedLibrary.notebooks[0])
+            const firstNotebook = notebooks[0]
+            if (
+                !selectedNotebook ||
+                (!notebookIds?.includes(selectedNotebook.id) &&
+                    !selectedLibrary?.default)
+            ) {
+                setNotebook(firstNotebook)
+                loadNotebooks(notebooks)
+            } else {
+                loadNotebooks(notebooksData)
             }
-            notebookStore.getState().loadNotebooks(selectedLibrary.notebooks)
 
-            const libraryColor = selectedLibrary.color as keyof typeof colors
+            const libraryColor = selectedLibrary?.color as keyof typeof colors
             if (colors[libraryColor]) {
                 const shades: ColorShade[] = [
                     50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950,
@@ -228,7 +201,7 @@ libraryStore.subscribe(
 
                 shades.forEach((shade) => {
                     const cssVar = `--active-${shade}`
-                    const colorValue = colors[libraryColor][shade] // Get Tailwind color value
+                    const colorValue = colors[libraryColor][shade]
                     if (colorValue) {
                         document.documentElement.style.setProperty(
                             cssVar,
@@ -238,11 +211,7 @@ libraryStore.subscribe(
                 })
             }
         } else {
-            console.log('all baby', selectedLibrary, libraries)
-            const allNotebooks = libraries.flatMap(
-                (library) => library.notebooks,
-            )
-            notebookStore.getState().loadNotebooks(allNotebooks)
+            notebookStore.getState().loadNotebooks(notebooksData)
             const defaultColors = {
                 '50': '#f3f4f6',
                 '100': '#e5e7eb',

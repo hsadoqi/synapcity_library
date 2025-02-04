@@ -1,39 +1,29 @@
 import { createStore, StoreApi, useStore } from 'zustand'
-import { Notebook, Note } from '@/types/libraryData'
 import { subscribeWithSelector } from 'zustand/middleware'
 import { libraryStore } from './library-store'
-
-export type DefaultNotebookType = Notebook & { default: boolean }
-
-const defaultNotebook: Notebook & { default: boolean } = {
-    id: '0',
-    name: 'All Notes',
-    shade: 500,
-    icon: 'NotebookPen',
-    tags: [],
-    notes: [] as Note[],
-    isStarred: false,
-    isArchived: false,
-    isDeleted: false,
-    default: true,
-    libraryId: '0',
-    createdAt: new Date('2025-01-02'),
-    updatedAt: new Date('2025-01-04'),
-    lastAccessedAt: new Date('2025-01-10'),
-}
+import { noteStore } from './note-store'
+import {
+    notebooksData,
+    Notebook,
+    defaultNotebook,
+    notesData,
+} from '@/types/libraryData'
 
 export type NotebookState = {
     notebooks: Notebook[]
     filteredNotebooks: Notebook[]
     selectedNotebook: Notebook | null
-    defaultNotebook: Notebook
+    defaultNotebook?: Notebook
+    isSidebarOpen: boolean
 }
 
 export type NotebookActions = {
     setNotebook: (notebook: Notebook | null) => void
     setActiveNotebookById: (noteBookId: string) => void
-    loadNotebooks: (notebooks: Notebook[]) => void
-    filterNotebooks: (searchQuery: string) => void
+    toggleSidebar: (value: boolean) => void
+    setDefaultNotebook: () => void
+    loadNotebooks: (notebooks?: Notebook[]) => void
+    filterNotebooks: (searchQuery?: string) => void
     resetFilters: () => void
     addNotebook: (notebook: Notebook) => void
     archiveNotebook: () => void
@@ -45,10 +35,15 @@ export type NotebookStore = NotebookState & NotebookActions
 
 export const notebookStore = createStore<NotebookStore>()(
     subscribeWithSelector((set) => ({
-        notebooks: [defaultNotebook],
-        filteredNotebooks: [defaultNotebook],
+        notebooks: [],
+        filteredNotebooks: [],
         selectedNotebook: null,
         defaultNotebook,
+        isSidebarOpen: false,
+        toggleSidebar: (value?: boolean) =>
+            set((state) => {
+                return { isSidebarOpen: value || !state.isSidebarOpen }
+            }),
         setNotebook: (notebook: Notebook | null) =>
             set({ selectedNotebook: notebook }),
         setActiveNotebookById: (notebookId: string) => {
@@ -63,18 +58,44 @@ export const notebookStore = createStore<NotebookStore>()(
                 }
             })
         },
+        setDefaultNotebook: () => set({ selectedNotebook: defaultNotebook }),
         loadNotebooks: (notebooks) =>
-            set({ notebooks, filteredNotebooks: notebooks }),
-        filterNotebooks: (searchQuery: string) =>
-            set((state) => ({
-                filteredNotebooks: state.notebooks.filter((notebook) =>
-                    notebook.name
-                        .toLowerCase()
-                        .includes(searchQuery.toLowerCase()),
-                ),
-            })),
+            set((state) => {
+                let updatedNotebooks: Notebook[]
+
+                if (notebooks) {
+                    updatedNotebooks = notebooks
+                } else {
+                    updatedNotebooks = notebooksData
+                }
+
+                return {
+                    notebooks: updatedNotebooks,
+                    filteredNotebooks: updatedNotebooks,
+                    selectedNotebook:
+                        state.selectedNotebook ??
+                        updatedNotebooks.find((notebook) => notebook.default) ??
+                        defaultNotebook,
+                }
+            }),
+        filterNotebooks: (searchQuery?: string) =>
+            set((state) => {
+                if (!searchQuery) {
+                    return { filteredNotebooks: state.notebooks }
+                }
+                return {
+                    filteredNotebooks: state.notebooks.filter((notebook) =>
+                        notebook.name
+                            .toLowerCase()
+                            .includes(searchQuery.toLowerCase()),
+                    ),
+                }
+            }),
         resetFilters: () =>
-            set((state) => ({ filteredNotebooks: state.notebooks })),
+            set((state) => ({
+                filteredNotebooks: state.notebooks,
+                searchQuery: '',
+            })),
         addNotebook: (notebook: Notebook) =>
             set((state) => ({ notebooks: [...state.notebooks, notebook] })),
         archiveNotebook: () =>
@@ -92,6 +113,7 @@ export const notebookStore = createStore<NotebookStore>()(
                         },
                     }
                 }
+
                 return state
             }),
         restoreNotebook: () =>
@@ -147,15 +169,45 @@ export const useNotebookStore = createBoundedUseStore(notebookStore)
 notebookStore.subscribe(
     (state) => state.selectedNotebook,
     (selectedNotebook) => {
-        if (selectedNotebook && selectedNotebook.libraryId) {
-            const { setActiveLibraryById, selectedLibrary } =
-                libraryStore.getState()
-            if (
-                !selectedLibrary ||
-                !selectedLibrary.notebooks.includes(selectedNotebook)
-            ) {
-                setActiveLibraryById(selectedNotebook.libraryId)
+        const { selectedLibrary } = libraryStore.getState()
+        const { loadNotes } = noteStore.getState()
+        if (selectedNotebook) {
+            // if (selectedNotebook.libraryId) {
+            //     if (
+            //         !selectedLibrary ||
+            //         !selectedLibrary.notebooks.includes(selectedNotebook)
+            //     ) {
+            //         setActiveLibraryById(selectedNotebook.libraryId)
+            //     }
+            // }
+
+            if (selectedNotebook.default) {
+                if (selectedLibrary?.default) {
+                    loadNotes(notesData)
+                } else {
+                    const noteIds = selectedNotebook.notes.map(
+                        (note) => note.id,
+                    )
+                    const notes = notesData.filter((note) =>
+                        noteIds.includes(note.id),
+                    )
+                    loadNotes(notes)
+                }
+            } else {
+                const noteIds = selectedNotebook.notes.map((note) => note.id)
+                const notes = notesData.filter((note) =>
+                    noteIds.includes(note.id),
+                )
+                loadNotes(notes)
             }
+        } else if (selectedLibrary) {
+            const noteIds = selectedLibrary.notebooks.map(
+                (notebook) => notebook.id,
+            )
+            const notes = notesData.filter((note) => noteIds.includes(note.id))
+            loadNotes(notes)
+        } else {
+            loadNotes(notesData)
         }
     },
 )
