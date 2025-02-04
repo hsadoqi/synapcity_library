@@ -3,6 +3,7 @@
 import { Usable, useEffect } from 'react'
 import { useNoteStore } from '@/stores/note-store'
 import * as React from 'react'
+import { PageContent, PageWrapper } from './components'
 
 type Params = {
     noteId: string
@@ -28,8 +29,8 @@ export default function NotePage({ params }: { params: Usable<Params> }) {
     }
 
     return (
-        <div className="py-6 px-8 flex flex-col justify-center items-start">
-            {selectedNote?.content}
-        </div>
+        <PageWrapper note={selectedNote}>
+            <PageContent note={selectedNote} />
+        </PageWrapper>
     )
 }
