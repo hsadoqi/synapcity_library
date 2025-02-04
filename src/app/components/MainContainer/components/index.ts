@@ -1,3 +1,3 @@
+export * from './Displays'
 export * from './PanelHeader'
-export * from './TabContent'
-export * from './TabsList'
+export * from './Tabs'

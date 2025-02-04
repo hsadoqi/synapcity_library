@@ -1,68 +1,74 @@
-import { Button } from '@/components'
-import {
-    DropdownMenu,
-    DropdownMenuTrigger,
-    DropdownMenuContent,
-    DropdownMenuItem,
-} from '@/components/ui/dropdown-menu'
-import { LucideMenu as HamburgerMenu } from 'lucide-react'
-import NavigationItem from '../../components/NavigationItem/NavigationItem'
+'use client'
 
-const data = [
-    {
-        link: 'Library',
-        href: '/libraries',
-    },
-    {
-        link: 'Projects',
-        href: '/projects',
-    },
-    {
-        link: 'Areas',
-        href: '/areas',
-    },
-    {
-        link: 'Resources',
-        href: '/resources',
-    },
-    {
-        link: 'Archives',
-        href: '/archives',
-    },
-]
+import { useAreasStore } from '@/stores/areas-store'
+import NavigationItem, {
+    type NavigationItemProps,
+} from '../../components/NavigationItem/NavigationItem'
+import DropdownNavigationMenu from './DropdownNavigationMenu/DropdownNavigationMenu'
+
 export default function MainNavigationMenu() {
+    const { setAreasHeader, isAreasHeaderVisible, areas } = useAreasStore()
+
+    const handleAreasHeader = () => {
+        setAreasHeader(!isAreasHeaderVisible)
+    }
+
+    // if (isAreasHeaderVisible && pathname !== 'areas') {
+    //     selectActiveArea('areas')
+    // } else if(!isAreasHeaderVisible){
+    //     setAreasHeader(true)
+    // } else {
+    //     // setAreasHeader(false)
+    //     resetActiveState()
+    // }
+
+    const data: NavigationItemProps[] = isAreasHeaderVisible
+        ? areas
+        : [
+              {
+                  label: 'Library',
+                  slug: '/libraries',
+              },
+              {
+                  label: 'Projects',
+                  slug: '/projects',
+              },
+              {
+                  label: 'Areas',
+                  slug: '/areas',
+                  onClick: handleAreasHeader,
+                  asButton: true,
+              },
+              {
+                  label: 'Resources',
+                  slug: '/resources',
+              },
+              {
+                  label: 'Archives',
+                  slug: '/archives',
+              },
+          ]
+
     return (
         <>
-            <div className="flex-1 w-0 lg:w-full -translate-y-full lg:translate-y-0 opacity-0 lg:opacity-100">
-                <div className="flex items-center justify-evenly gap-8 w-1/2 mx-auto">
-                    {data.map((item, index) => (
-                        <NavigationItem
-                            key={`nav-item-${index}`}
-                            link={item.link}
-                            href={item.href}
-                        />
-                    ))}
+            <div className="w-0 lg:w-1/2">
+                <div className="hidden lg:flex items-center justify-center gap-8 w-full mx-auto transition-all duration-1000 delay-150 ease-in-out">
+                    {data.map((item, index) => {
+                        const { label, slug, onClick, asButton } = item
+                        console.log('rendering items', item)
+                        return (
+                            <NavigationItem
+                                key={`nav-item-${index}`}
+                                label={label}
+                                slug={slug}
+                                onClick={onClick}
+                                asButton={asButton}
+                            />
+                        )
+                    })}
                 </div>
             </div>
-            <div className="lg:hidden flex gap-3">
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button size="icon">
-                            <HamburgerMenu />
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent className="w-[--radix-popper-anchor-width]">
-                        <DropdownMenuItem>
-                            <NavigationItem link="Home" href="/" />
-                        </DropdownMenuItem>
-                        {data.map((item, index) => (
-                            <DropdownMenuItem key={`dropdown-${index}`}>
-                                <NavigationItem {...item} />
-                            </DropdownMenuItem>
-                        ))}
-                    </DropdownMenuContent>
-                </DropdownMenu>
-            </div>
+            <DropdownNavigationMenu items={data} />
         </>
     )
 }

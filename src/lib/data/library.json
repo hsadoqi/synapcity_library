@@ -1,0 +1,92 @@
+[
+    {
+        "id": "library-123",
+        "name": "Master Library",
+        "color": "neutral",
+        "icon": "Combine",
+        "tags": [],
+        "isStarred": false,
+        "isArchived": false,
+        "isDeleted": false,
+        "createdAt": "2024-12-13T00:00:00",
+        "updatedAt": "2024-12-18T00:00:00",
+        "lastAccessedAt": "2025-01-11T00:00:00",
+        "notebooks": [
+            {
+                "id": "notebook-123",
+                "name": "Master Notebook",
+                "shade": 500,
+                "icon": "Combine",
+                "tags": []
+            },
+            {
+                "id": "notebook-2",
+                "name": "Travel Plans",
+                "shade": 500,
+                "icon": "mdi:pen",
+                "tags": ["travel"]
+            },
+            {
+                "id": "notebook-3",
+                "name": "Brainstorm",
+                "shade": 500,
+                "icon": "mdi:brain",
+                "tags": ["ideas", "thoughts"]
+            }
+        ],
+        "default": true
+    },
+    {
+        "id": "library-1",
+        "name": "Personal",
+        "color": "blue",
+        "icon": "basil:book-outline",
+        "tags": ["important", "personal"],
+        "isStarred": false,
+        "isArchived": false,
+        "isDeleted": false,
+        "createdAt": "2024-12-13T00:00:00",
+        "updatedAt": "2024-12-18T00:00:00",
+        "lastAccessedAt": "2025-01-11T00:00:00",
+        "notebooks": [
+            {
+                "id": "notebook-2",
+                "name": "Travel Plans",
+                "shade": 500,
+                "icon": "mdi:pen",
+                "tags": ["travel"]
+            },
+            {
+                "id": "notebook-3",
+                "name": "Brainstorm",
+                "shade": 500,
+                "icon": "mdi:brain",
+                "tags": ["ideas", "thoughts"]
+            }
+        ],
+        "default": false
+    },
+    {
+        "id": "library-2",
+        "name": "Fitness",
+        "color": "indigo",
+        "icon": "mingcute:fitness-line",
+        "tags": ["health", "gym"],
+        "isStarred": false,
+        "isArchived": false,
+        "isDeleted": false,
+        "createdAt": "2024-12-13T00:00:00",
+        "updatedAt": "2024-12-18T00:00:00",
+        "lastAccessedAt": "2025-01-11T00:00:00",
+        "notebooks": [
+            {
+                "id": "notebook-4",
+                "name": "Workout Routines",
+                "shade": 500,
+                "icon": "lucide-lab:sneaker",
+                "tags": ["gym", "routine"]
+            }
+        ],
+        "default": false
+    }
+]
