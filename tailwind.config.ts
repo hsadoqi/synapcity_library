@@ -86,5 +86,10 @@ export default {
 			},
 		},
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [
+		require("tailwindcss-animate"),
+		require("@tailwindcss/container-queries"),
+		require("@tailwindcss/typography"),
+		require("daisyui"),
+	],
 } satisfies Config;
