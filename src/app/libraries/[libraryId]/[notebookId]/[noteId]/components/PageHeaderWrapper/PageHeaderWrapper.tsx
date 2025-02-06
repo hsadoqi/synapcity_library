@@ -10,7 +10,13 @@ import { Ellipsis } from 'lucide-react'
 import Link from 'next/link'
 import { useEffect } from 'react'
 
-export default function PageHeaderWrapper({ note }: { note: Note }) {
+export default function PageHeaderWrapper({
+    note,
+    toggleMetadata,
+}: {
+    note: Note
+    toggleMetadata: () => void
+}) {
     const { selectedLibrary } = useLibraryStore()
     const { selectedNotebook } = useNotebookStore()
     useEffect(() => {
@@ -24,8 +30,8 @@ export default function PageHeaderWrapper({ note }: { note: Note }) {
         )
     }, [selectedLibrary, selectedNotebook, note])
     return (
-        <div className="@container/main flex flex-col min-h-16 md:min-h-32 h-1/5 size-full relative px-8">
-            <div className="hidden sm:flex items-center justify-end min-h-16 h-16 drop-shadow-sm hover:drop-shadow-md drop-shadow-active-500 border-b">
+        <div className="@container/main flex flex-col min-h-16 md:min-h-32 h-1/5 size-full relative">
+            <div className="hidden sm:flex items-center justify-end min-h-16 h-16 drop-shadow-sm hover:drop-shadow-md drop-shadow-active-500 px-8 bg-active-100 dark:bg-active-900">
                 <div className="breadcrumbs">
                     <ul>
                         <li>
@@ -51,7 +57,7 @@ export default function PageHeaderWrapper({ note }: { note: Note }) {
                     </ul>
                 </div>
             </div>
-            <div className="relative flex-1 flex flex-col items-start justify-center h-full @md/main:gap-2">
+            <div className="relative flex-1 flex flex-col items-start justify-center h-full @md/main:gap-2 px-8">
                 <h1 className="font-bold transition-all duration-300 ease-in-out text-2xl @lg/main:text-3xl @xl/main:text-4xl pt-2 pb-2 whitespace-nowrap">
                     {note.name}
                 </h1>
@@ -67,7 +73,11 @@ export default function PageHeaderWrapper({ note }: { note: Note }) {
                 </div>
                 <Tooltip>
                     <TooltipTrigger asChild>
-                        <Button size="icon" className="absolute right-0 top-4">
+                        <Button
+                            size="icon"
+                            className="absolute right-8 top-4"
+                            onClick={() => toggleMetadata()}
+                        >
                             <Ellipsis className="size-4" />
                         </Button>
                     </TooltipTrigger>
